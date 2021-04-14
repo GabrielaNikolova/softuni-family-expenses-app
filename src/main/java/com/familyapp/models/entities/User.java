@@ -10,9 +10,10 @@ public class User extends BaseEntity {
     private String password;
     private String fullName;
     //private int age;
-    private List<Budget> privateBudget;
+    private Budget privateBudget;
+    private List<Income> privateIncomes;
     private List<Role> roles;
-//    private List<Expense> expenses;
+    //    private List<Expense> expenses;
 //    private List<Event> events;
     private Family family;
 
@@ -41,9 +42,14 @@ public class User extends BaseEntity {
 //    }
 
 
-    @OneToMany
-    public List<Budget> getPrivateBudget() {
+    @OneToOne
+    public Budget getPrivateBudget() {
         return privateBudget;
+    }
+
+    @OneToMany
+    public List<Income> getPrivateIncomes() {
+        return privateIncomes;
     }
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -93,8 +99,13 @@ public class User extends BaseEntity {
 //    }
 
 
-    public User setPrivateBudget(List<Budget> privateBudget) {
+    public User setPrivateBudget(Budget privateBudget) {
         this.privateBudget = privateBudget;
+        return this;
+    }
+
+    public User setPrivateIncomes(List<Income> privateIncomes) {
+        this.privateIncomes = privateIncomes;
         return this;
     }
 

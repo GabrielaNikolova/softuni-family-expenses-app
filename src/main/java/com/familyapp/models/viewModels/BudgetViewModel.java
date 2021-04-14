@@ -8,9 +8,7 @@ import java.time.LocalDate;
 public class BudgetViewModel {
     private Long id;
     private BigDecimal budgetAmount;
-    private BigDecimal incomeAmount;
-    private BigDecimal savingsAmount;
-    private LocalDate receivedOn;
+    private LocalDate editedOn;
     private User addedBy;
 
     public BudgetViewModel() {
@@ -25,16 +23,8 @@ public class BudgetViewModel {
         return budgetAmount;
     }
 
-    public BigDecimal getIncomeAmount() {
-        return incomeAmount;
-    }
-
-    public BigDecimal getSavingsAmount() {
-        return savingsAmount;
-    }
-
     public LocalDate getReceivedOn() {
-        return receivedOn;
+        return editedOn;
     }
 
     public User getAddedBy() {
@@ -51,18 +41,8 @@ public class BudgetViewModel {
         return this;
     }
 
-    public BudgetViewModel setIncomeAmount(BigDecimal incomeAmount) {
-        this.incomeAmount = incomeAmount;
-        return this;
-    }
-
-    public BudgetViewModel setSavingsAmount(BigDecimal savingsAmount) {
-        this.savingsAmount = savingsAmount;
-        return this;
-    }
-
-    public BudgetViewModel setReceivedOn(LocalDate receivedOn) {
-        this.receivedOn = receivedOn;
+    public BudgetViewModel setReceivedOn(LocalDate editedOn) {
+        this.editedOn = editedOn;
         return this;
     }
 

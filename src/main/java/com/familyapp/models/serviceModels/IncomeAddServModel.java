@@ -1,21 +1,23 @@
 package com.familyapp.models.serviceModels;
 
+import com.familyapp.models.entities.User;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class BudgetAddServModel {
-    private BigDecimal budgetAmount;
+public class IncomeAddServModel {
+    private Long id;
     private BigDecimal incomeAmount;
     private BigDecimal savingsAmount;
     private LocalDate receivedOn;
+    private User addedBy;
 
 
-    public BudgetAddServModel() {
+    public IncomeAddServModel() {
     }
 
-
-    public BigDecimal getBudgetAmount() {
-        return budgetAmount;
+    public Long getId() {
+        return id;
     }
 
     public BigDecimal getIncomeAmount() {
@@ -30,22 +32,31 @@ public class BudgetAddServModel {
         return receivedOn;
     }
 
-    public BudgetAddServModel setBudgetAmount(BigDecimal budgetAmount) {
-        this.budgetAmount = budgetAmount;
+    public User getAddedBy() {
+        return addedBy;
+    }
+
+    public IncomeAddServModel setId(Long id) {
+        this.id = id;
         return this;
     }
 
-    public BudgetAddServModel setIncomeAmount(BigDecimal incomeAmount) {
+    public IncomeAddServModel setAddedBy(User addedBy) {
+        this.addedBy = addedBy;
+        return this;
+    }
+
+    public IncomeAddServModel setIncomeAmount(BigDecimal incomeAmount) {
         this.incomeAmount = incomeAmount;
         return this;
     }
 
-    public BudgetAddServModel setSavingsAmount(BigDecimal savingsAmount) {
+    public IncomeAddServModel setSavingsAmount(BigDecimal savingsAmount) {
         this.savingsAmount = savingsAmount;
         return this;
     }
 
-    public BudgetAddServModel setReceivedOn(LocalDate receivedOn) {
+    public IncomeAddServModel setReceivedOn(LocalDate receivedOn) {
         this.receivedOn = receivedOn;
         return this;
     }

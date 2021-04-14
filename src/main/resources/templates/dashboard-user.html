@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/fragments :: head"></head>
 <body class="dashboard">
 <div class="wrapper">
@@ -25,7 +25,9 @@
                                 <div class="col-7 col-md-8">
                                     <div class="numbers">
                                         <p class="card-category">Budget</p>
-                                        <p class="card-title">$ 1,500</p>
+                                        <p class="card-title"></p> <span
+                                            th:utext="${'&#36;'+'&nbsp;'}"></br></span><span
+                                            th:text="${userBudget}"></span>
                                         <p>
                                         </p></div>
                                 </div>
@@ -51,7 +53,8 @@
                                 <div class="col-7 col-md-8">
                                     <div class="numbers">
                                         <p class="card-category">Income</p>
-                                        <p class="card-title">$ 1,750</p>
+                                        <p class="card-title"></p><span th:utext="${'&#36;'+'&nbsp;'}"></br></span><span
+                                            th:text="${userIncome}"></span>
                                         <p>
                                         </p></div>
                                 </div>
@@ -103,7 +106,9 @@
                                 <div class="col-7 col-md-8">
                                     <div class="numbers">
                                         <p class="card-category">Savings</p>
-                                        <p class="card-title">+$ 300</p>
+                                        <p class="card-title"></p><span
+                                            th:utext="${'+'+'&#36;'+'&nbsp;'}"></br></span><span
+                                            th:text="${userSavings}"></span>
                                         <p>
                                         </p></div>
                                 </div>

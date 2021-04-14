@@ -4,24 +4,17 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.FutureOrPresent;
-import javax.validation.constraints.NotEmpty;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class BudgetAddBindModel {
+public class IncomeAddBindModel {
 
-    private BigDecimal budgetAmount;
     private BigDecimal incomeAmount;
     private BigDecimal savingsAmount;
     private LocalDate receivedOn;
 
 
-    public BudgetAddBindModel() {
-    }
-
-    @DecimalMin("0")
-    public BigDecimal getBudgetAmount() {
-        return budgetAmount;
+    public IncomeAddBindModel() {
     }
 
     @DecimalMin("0")
@@ -40,22 +33,17 @@ public class BudgetAddBindModel {
         return receivedOn;
     }
 
-    public BudgetAddBindModel setBudgetAmount(BigDecimal budgetAmount) {
-        this.budgetAmount = budgetAmount;
-        return this;
-    }
-
-    public BudgetAddBindModel setIncomeAmount(BigDecimal incomeAmount) {
+    public IncomeAddBindModel setIncomeAmount(BigDecimal incomeAmount) {
         this.incomeAmount = incomeAmount;
         return this;
     }
 
-    public BudgetAddBindModel setSavingsAmount(BigDecimal savingsAmount) {
+    public IncomeAddBindModel setSavingsAmount(BigDecimal savingsAmount) {
         this.savingsAmount = savingsAmount;
         return this;
     }
 
-    public BudgetAddBindModel setReceivedOn(LocalDate receivedOn) {
+    public IncomeAddBindModel setReceivedOn(LocalDate receivedOn) {
         this.receivedOn = receivedOn;
         return this;
     }

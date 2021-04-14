@@ -2,24 +2,15 @@ package com.familyapp.services.impl;
 
 import com.familyapp.models.entities.Budget;
 import com.familyapp.models.entities.User;
-import com.familyapp.models.serviceModels.BudgetAddServModel;
-import com.familyapp.models.viewModels.BudgetViewModel;
 import com.familyapp.repositories.BudgetRepo;
 import com.familyapp.services.BudgetService;
 import com.familyapp.services.UserService;
 import org.modelmapper.ModelMapper;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.math.BigDecimal;
-import java.security.Principal;
 import java.time.LocalDate;
-import java.time.Month;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class BudgetServiceImpl implements BudgetService {
@@ -34,46 +25,57 @@ public class BudgetServiceImpl implements BudgetService {
         this.modelMapper = modelMapper;
     }
 
+    @Override
+    public void addBudget(BigDecimal newAmount) {
+        User user = userService.findByName(SecurityContextHolder.getContext().getAuthentication().getName());
+        Budget budget = budgetRepo.findByAddedBy_Username(user.getUsername());
+
+        if (budget == null) {
+            Budget newBudget = new Budget();
+            newBudget
+                    .setBudgetAmount(BigDecimal.valueOf(0).add(newAmount))
+                    .setEditedOn(LocalDate.now())
+                    .setAddedBy(user);
+
+            budgetRepo.save(newBudget);
+            user.setPrivateBudget(newBudget);
+        } else {
+            budget
+                    .setBudgetAmount(budget.getBudgetAmount().add(newAmount))
+                    .setEditedOn(LocalDate.now())
+                    .setAddedBy(user);
+
+            budgetRepo.save(budget);
+            user.setPrivateBudget(budget);
+        }
+    }
 
     @Override
-    @Transactional
-    public void addBudget(BudgetAddServModel budgetAddServiceModel) {
-        Budget newBudget = modelMapper.map(budgetAddServiceModel, Budget.class);
+    public BigDecimal getBudgetByUser() {
+        User user = userService.findByName(SecurityContextHolder.getContext().getAuthentication().getName());
+        Long budgetAmount = budgetRepo.findBudgetAmountByUser(user.getId());
 
-        newBudget.setReceivedOn(LocalDate.now());
-        BigDecimal budgetAmount = newBudget.getIncomeAmount().subtract(newBudget.getSavingsAmount());
-
-        newBudget.setBudgetAmount(budgetAmount);
-
-        User addedByUser = userService
-                .findByName(SecurityContextHolder.getContext().getAuthentication().getName());
-
-        newBudget.setAddedBy(addedByUser);
-        budgetRepo.save(newBudget);
-
-        if (!addedByUser.getPrivateBudget().isEmpty()) {
-            addedByUser.getPrivateBudget().add(newBudget);
-        } else {
-            List<Budget> usersBudgets = new ArrayList<>();
-            usersBudgets.add(newBudget);
-            addedByUser.setPrivateBudget(usersBudgets);
+        if (budgetAmount == null) {
+            return BigDecimal.valueOf(0);
         }
 
-
+        return BigDecimal.valueOf(budgetAmount);
     }
 
 
-    @Override
-    public  List<BudgetViewModel> findAllByUser() {
-        return budgetRepo.findAllByAddedBy(SecurityContextHolder.getContext().getAuthentication().getName())
-                .stream().map(b->modelMapper.map(b, BudgetViewModel.class))
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public BudgetViewModel findByMonth() {
-        return null;
-    }
+//    @Override
+//    public  List<BudgetViewModel> findAllByUser() {
+//        return budgetRepo.findAllByAddedBy(SecurityContextHolder.getContext().getAuthentication().getName())
+//                .stream().map(b->modelMapper.map(b, BudgetViewModel.class))
+//                .collect(Collectors.toList());
+//    }
+//
+//    @Override
+//    public BudgetViewModel findByMonth() {
+//        BudgetViewModel montlyBudget = findAllByUser()
+//                .forEach(b -> b.getReceivedOn().getMonth().getValue());
+//        return null;
+//    }
 
 
 }

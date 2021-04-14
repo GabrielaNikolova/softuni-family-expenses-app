@@ -12,8 +12,10 @@
         <div class="content">
             <div class="container-sm h-100">
                 <div class="row h-100 justify-content-center align-items-center" style="padding: 30px">
-                    <form class="login-form" th:action="@{/budget/add}" th:object="${budgetAddBindModel}" method="POST">
+                    <form class="login-form" th:action="@{/income/add}" th:object="${incomeAddBindModel}" method="POST">
                         <div class="login-card">
+                            <h5 th:if="${invalidSavingsValue}" class="text-center text-danger form-text bg-transparent">
+                                Savings cannot be bigger than Income</h5>
                             <div class="form-group row">
                                 <label for="inputIncome">Income</label>
                                 <input name="incomeAmount"
@@ -40,7 +42,7 @@
                             </div>
                             <div class="form-group row justify-content-center">
                                 <div class="col-sm-auto rounded" style="background-color: #333a6e">
-                                    <button type="submit" class="btn text-wrap" style="color: #f8f0f3">Add Budget
+                                    <button type="submit" class="btn text-wrap" style="color: #f8f0f3">Add Income
                                     </button>
                                 </div>
                             </div>

@@ -1,7 +1,9 @@
 package com.familyapp.models.entities;
 
-import javax.persistence.*;
-import java.math.BigDecimal;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -9,11 +11,8 @@ import java.time.LocalDate;
 @Table(name = "budget")
 public class Budget extends BaseEntity{
     private BigDecimal budgetAmount;
-    private BigDecimal incomeAmount;
-    private BigDecimal savingsAmount;
-    private LocalDate receivedOn;
+    private LocalDate editedOn;
     private User addedBy;
-
 
 
     public Budget() {
@@ -23,21 +22,13 @@ public class Budget extends BaseEntity{
     public BigDecimal getBudgetAmount() {
         return budgetAmount;
     }
-    @Column(name = "income_amount", nullable = false)
-    public BigDecimal getIncomeAmount() {
-        return incomeAmount;
-    }
-    @Column(name = "savings_amount", nullable = false)
-    public BigDecimal getSavingsAmount() {
-        return savingsAmount;
+
+    @Column(name = "edited_on", nullable = false)
+    public LocalDate getEditedOn() {
+        return editedOn;
     }
 
-    @Column(name = "received_on", nullable = false)
-    public LocalDate getReceivedOn() {
-        return receivedOn;
-    }
-
-    @ManyToOne
+    @OneToOne
     public User getAddedBy() {
         return addedBy;
     }
@@ -52,18 +43,8 @@ public class Budget extends BaseEntity{
         return this;
     }
 
-    public Budget setIncomeAmount(BigDecimal incomeAmount) {
-        this.incomeAmount = incomeAmount;
-        return this;
-    }
-
-    public Budget setSavingsAmount(BigDecimal savingsAmount) {
-        this.savingsAmount = savingsAmount;
-        return this;
-    }
-
-    public Budget setReceivedOn(LocalDate receivedOn) {
-        this.receivedOn = receivedOn;
+    public Budget setEditedOn(LocalDate editedOn) {
+        this.editedOn = editedOn;
         return this;
     }
 }

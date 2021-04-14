@@ -1,14 +1,11 @@
 package com.familyapp.services;
 
-import com.familyapp.models.serviceModels.BudgetAddServModel;
-import com.familyapp.models.viewModels.BudgetViewModel;
-
-import java.util.List;
+import java.math.BigDecimal;
 
 public interface BudgetService {
-    void addBudget(BudgetAddServModel budgetAddServiceModel);
+    void addBudget(BigDecimal newAmount);
 
-    List<BudgetViewModel> findAllByUser();
-    BudgetViewModel findByMonth();
+    BigDecimal getBudgetByUser();
+
     //List<BudgetViewModel> findAllByFamily();
 }
