@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/fragments :: head"></head>
+<body class="dashboard">
+<div class="wrapper">
+    <div th:replace="fragments/fragments :: sidebar"></div>
+
+    <div class="main-panel">
+        <!-- Navbar -->
+        <nav th:replace="fragments/fragments :: nav2"></nav>
+        <!-- End Navbar -->
+        <div class="content">
+            <div class="container-sm h-100">
+                <div class="row h-100 justify-content-center align-items-center" style="padding: 30px">
+                    <form class="register-form" action="/expenses/add" method="POST">
+                        <div class="login-card h-75">
+                            <h5 class="text-center" style="padding-bottom: 15px">New Expense</h5>
+                            <div class="row mx-md-n5">
+                                <div class="col px-md-5">
+                                    <div class="form-group row">
+                                        <label for="inputExpenseName">Expense Name</label>
+                                        <input type="text" class="form-control" id="inputExpenseName"
+                                               placeholder="Enter Expense Name">
+                                        <small id="expenseNameError" class="text-danger form-text bg-transparent">Length must between 3
+                                            and 20 characters</small>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="expenseType">Expense Type</label>
+<!--                                        <select th:field="*{expenseType}" th:errorclass="bg-danger"-->
+                                        <select class="custom-select" id="expenseType">
+                                            <option value="" selected>Select Expense Type</option>
+                                            <option th:each="t : ${T(com.familyapp.models.enumModels.ExpenseTypeEnum).values()}"
+                                                    th:value="${t}" th:text="${t}">Select Expense Type
+                                            </option>
+                                        </select>
+<!--                                        <small th:if="${#fields.hasErrors('expenseType')}" th:errors="*{expenseType}"-->
+<!--                                               id="expenseTypeError" class="text-danger form-text bg-transparent">Must-->
+<!--                                            select a type</small>-->
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="dueDate">Expense Due Date</label>
+                                        <input type="date" class="form-control" id="dueDate"
+                                               placeholder="Enter a Due Date">
+                                        <small id="dueDateError" class="text-danger form-text bg-transparent">Date
+                                            cannot be in the past</small>
+                                    </div>
+                                </div>
+                                <div class="col px-md-5">
+                                    <div class="form-group row">
+                                        <label for="inputAmount">Amount</label>
+                                        <input type="number" min="0" step="10" class="form-control" id="inputAmount"
+                                               placeholder="Enter Expense Amount">
+                                        <small id="amountError" class="text-danger form-text bg-transparent">Amount must
+                                            be a positive number</small>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="expenseCategory">Expense Category</label>
+<!--                                        <select th:field="*{expenseCategory}" th:errorclass="bg-danger"-->
+                                        <select   class="custom-select" id="expenseCategory">
+                                            <option value="" selected>Select Expense Category</option>
+                                            <option th:each="c : ${T(com.familyapp.models.enumModels.ExpenseCategoryEnum).values()}"
+                                                    th:value="${c}" th:text="${c}">Select Expense Category
+                                            </option>
+                                        </select>
+<!--                                        <small th:if="${#fields.hasErrors('expenseCategory')}" th:errors="*{expenseCategory}" id="expenseCategoryError" class="text-danger form-text bg-transparent">Must-->
+<!--                                            select a category</small>-->
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="belongTo">Expense Owner</label>
+                                        <input type="text" class="form-control" id="belongTo"
+                                               placeholder="Enter an Expense Owner">
+                                        <small id="belongToError" class="text-danger form-text bg-transparent">Length
+                                            must between 2
+                                            and 20 characters</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mx-md-n5">
+                                <div class="col px-md-5">
+                                    <div class="form-group row justify-content-center">
+                                        <div class="col-sm-auto rounded" style="background-color: #333a6e">
+                                            <button type="submit" class="btn text-wrap" style="color: #f8f0f3">Add
+                                                Expense
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <footer th:replace="fragments/fragments :: footer"></footer>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>
+</body>
+</html>

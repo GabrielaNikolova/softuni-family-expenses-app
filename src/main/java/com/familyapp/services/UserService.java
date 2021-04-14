@@ -1,0 +1,17 @@
+package com.familyapp.services;
+
+import com.familyapp.models.entities.User;
+import com.familyapp.models.serviceModels.UserLoginServModel;
+import com.familyapp.models.serviceModels.UserRegistrationServModel;
+
+public interface UserService {
+
+    boolean userNameExists(String username);
+
+    User findByName(String username);
+
+    User findById(Long id);
+
+    void registerAndLoginUser(UserRegistrationServModel userServiceModel);
+    //void loginUser(UserLoginServModel userServiceModel);
+}

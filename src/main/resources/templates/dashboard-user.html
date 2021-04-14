@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/fragments :: head"></head>
+<body class="dashboard">
+<div class="wrapper">
+    <div th:replace="fragments/fragments :: sidebar"></div>
+
+    <div class="main-panel">
+        <!-- Navbar -->
+        <nav th:replace="fragments/fragments :: nav2"></nav>
+        <!-- End Navbar -->
+        <div class="content">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="card card-stats">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-5 col-md-4">
+                                    <img src="/images/icons/income.png" alt="" height="60"
+                                         class="d-inline-block align-center">
+                                    <!--                                    <div class="icon-big text-center icon-warning">-->
+                                    <!--                                        <i class="exps"></i>-->
+                                    <!--                                    </div>-->
+                                </div>
+                                <div class="col-7 col-md-8">
+                                    <div class="numbers">
+                                        <p class="card-category">Budget</p>
+                                        <p class="card-title">$ 1,500</p>
+                                        <p>
+                                        </p></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer ">
+                            <hr>
+                            <div class="stats">
+                                <i class="fa fa-refresh"></i>
+                                Update Now
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="card card-stats">
+                        <div class="card-body ">
+                            <div class="row">
+                                <div class="col-5 col-md-4">
+                                    <img src="/images/icons/income1.png" alt="" height="60"
+                                         class="d-inline-block align-center">
+                                </div>
+                                <div class="col-7 col-md-8">
+                                    <div class="numbers">
+                                        <p class="card-category">Income</p>
+                                        <p class="card-title">$ 1,750</p>
+                                        <p>
+                                        </p></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer ">
+                            <hr>
+                            <div class="stats">
+                                <i class="fa fa-calendar-o"></i>
+                                Last day
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="card card-stats">
+                        <div class="card-body ">
+                            <div class="row">
+                                <div class="col-5 col-md-4">
+                                    <img src="/images/icons/expense.png" alt="" height="60"
+                                         class="d-inline-block align-center">
+                                </div>
+                                <div class="col-7 col-md-8">
+                                    <div class="numbers">
+                                        <p class="card-category">Expenses</p>
+                                        <p class="card-title">$ 750</p>
+                                        <p>
+                                        </p></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer ">
+                            <hr>
+                            <div class="stats">
+                                <i class="fa fa-clock-o"></i>
+                                In the last hour
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="card card-stats">
+                        <div class="card-body ">
+                            <div class="row">
+                                <div class="col-5 col-md-4">
+                                    <img src="/images/icons/save2.png" alt="" height="60"
+                                         class="d-inline-block align-center">
+                                </div>
+                                <div class="col-7 col-md-8">
+                                    <div class="numbers">
+                                        <p class="card-category">Savings</p>
+                                        <p class="card-title">+$ 300</p>
+                                        <p>
+                                        </p></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer ">
+                            <hr>
+                            <div class="stats">
+                                <i class="fa fa-refresh"></i>
+                                Update now
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header" style="line-height: 20px;">
+                            <h5 class="card-title text-center"> Personal Expenses</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class=" text-primary">
+                                    <tr>
+                                        <th>
+                                            Category
+                                        </th>
+                                        <th>
+                                            Name
+                                        </th>
+                                        <th>
+                                            Type
+                                        </th>
+                                        <th>
+                                            Created On
+                                        </th>
+                                        <th>
+                                            Due Date
+                                        </th>
+                                        <th class="text-right">
+                                            Amount
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            Dakota Rice
+                                        </td>
+                                        <td>
+                                            Niger
+                                        </td>
+                                        <td>
+                                            Oud-Turnhout
+                                        </td>
+                                        <td>
+                                            Oud-Turnhout
+                                        </td>
+                                        <td>
+                                            Oud-Turnhout
+                                        </td>
+                                        <td class="text-right">
+                                            $36,738
+                                        </td>
+                                        <td>
+                                            <div class="btn-group rounded align-items-center"
+                                                 style="background-color: #333a6e">
+                                                <a type="button" class="btn btn-sm"
+                                                   style="color: #f8f0f3; text-align: center !important;"
+                                                   th:href="@{expenses/edit/{id}(id=*{id})}">Edit
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Minerva Hooper
+                                        </td>
+                                        <td>
+                                            Curaçao
+                                        </td>
+                                        <td>
+                                            Sinaai-Waas
+                                        </td>
+                                        <td>
+                                            Sinaai-Waas
+                                        </td>
+                                        <td>
+                                            Sinaai-Waas
+                                        </td>
+                                        <td class="text-right">
+                                            $23,789
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div id="app"></div>
+                </div>
+            </div>
+            <footer th:replace="fragments/fragments :: footer"></footer>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>
+<script src="/js/script.js"></script>
+</body>
+</html>

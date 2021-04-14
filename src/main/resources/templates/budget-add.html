@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/fragments :: head"></head>
+<body class="dashboard">
+<div class="wrapper">
+    <div th:replace="fragments/fragments :: sidebar"></div>
+
+    <div class="main-panel">
+        <!-- Navbar -->
+        <nav th:replace="fragments/fragments :: nav2"></nav>
+        <!-- End Navbar -->
+        <div class="content">
+            <div class="container-sm h-100">
+                <div class="row h-100 justify-content-center align-items-center" style="padding: 30px">
+                    <form class="login-form" th:action="@{/budget/add}" th:object="${budgetAddBindModel}" method="POST">
+                        <div class="login-card">
+                            <div class="form-group row">
+                                <label for="inputIncome">Income</label>
+                                <input name="incomeAmount"
+                                       th:field="*{incomeAmount}"
+                                       th:errorclass="is-invalid"
+                                       required
+                                       type="number" min="0" step="1" class="form-control" id="inputIncome"
+                                       placeholder="Enter Income Amount">
+                                <small id="incomeError" class="invalid-feedback text-danger form-text bg-transparent">Income
+                                    must
+                                    be a positive number</small>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputSavings">Savings</label>
+                                <input name="savingsAmount"
+                                       th:field="*{savingsAmount}"
+                                       th:errorclass="is-invalid"
+                                       required
+                                       type="number" min="0" step="1" class="form-control" id="inputSavings"
+                                       placeholder="Enter Savings Amount">
+                                <small id="savingsError" class="invalid-feedback text-danger form-text bg-transparent">Savings
+                                    must
+                                    be a positive number</small>
+                            </div>
+                            <div class="form-group row justify-content-center">
+                                <div class="col-sm-auto rounded" style="background-color: #333a6e">
+                                    <button type="submit" class="btn text-wrap" style="color: #f8f0f3">Add Budget
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <footer th:replace="fragments/fragments :: footer"></footer>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="head">
+    <meta charset="UTF-8"/>
+    <!-- Required meta tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Management App</title>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+
+    <!--    <link rel="stylesheet" type="text/css" href="/scss/bootstrap.css"/>-->
+    <!--    <link rel="stylesheet" type="text/css" href="/scss/custom.css"/>-->
+    <script src="https://kit.fontawesome.com/ecdbc2e0fc.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+<nav th:fragment="navigation" class="navbar navbar-expand-lg navbar-light bg-transparent">
+    <!--        <nav class="navbar navbar-expand-lg navbar-light bg-light">-->
+    <div class="container-fluid">
+        <img src="/images/icons/wallet2.png" alt="" width="30" height="24"
+             class="d-inline-block align-center">
+        <a class="navbar-brand ml-2 h1" th:href="@{/}">FaM.Ma</a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/families/register}">Register Family</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/families/confirm}">Join Family</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/users/login}">Login</a>
+                </li>
+                <!--                    <li class="nav-item dropdown">-->
+                <!--                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"-->
+                <!--                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+                <!--                            Admin-->
+                <!--                        </a>-->
+                <!--                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">-->
+                <!--                            <li><a class="dropdown-item" href="#">Add User</a></li>-->
+                <!--                            <li><a class="dropdown-item" href="#">Role Management</a></li>-->
+                <!--                            <li><a class="dropdown-item" href="#">Manage Fixed Expenses</a></li>-->
+                <!--                        </ul>-->
+                <!--                    </li>-->
+                <!--                <li sec:authorize="isAuthenticated()" class="nav-item">-->
+                <!--                    <a class="nav-link" href="/logout">Logout</a>-->
+                <!--                </li>-->
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<nav th:fragment="nav2" class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
+    <div class="container-fluid">
+        <div class="navbar-wrapper">
+            <a class="navbar-brand" th:href="@{/users/dashboard}" >Hello, <span sec:authentication="name"></span>!</a>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon" style="color: #333a6e !important;"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdow">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <form th:action="@{/logout}" method="POST">
+                        <button type="submit" class="text-wrap" style="color: #333a6e">Logout</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div th:fragment="sidebar" class="sidebar" data-color="white" data-active-color="danger">
+    <div class="logo">
+        <img src="/images/icons/wallet2.png" alt="" width="30" height="24"
+             class="d-inline-block align-center">
+        <a class="navbar-brand ml-2 h1" style="color: #f8f0f3 !important;" th:href="@{/users/dashboard}">FaM.Ma</a>
+    </div>
+    <div class="sidebar-wrapper">
+        <ul class="nav">
+            <li>
+                <a th:href="@{/family/dashboard}">
+                    <i class="fam"></i>
+                    <p>Family Dashboard</p>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/users/dashboard}">
+                    <i class="fam"></i>
+                    <p>User Dashboard</p>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/budget/add}">
+                    <i class="bdg"></i>
+                    <p>Add Budget</p>
+                </a>
+            </li>
+            <li>
+                <a class="expenses dropdown" href="#" id="expenseDropdownMenuLink" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="exps"></i>
+                    <p>Expenses</p>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="expenseDropdownMenuLink">
+                    <li><a class="dropdown-item" th:href="@{/expenses/all}">All Expenses</a></li>
+                    <li><a class="dropdown-item" th:href="@{/expenses/add}">Add Expense</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="events dropdown" href="#" id="eventDropdownMenuLink" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="evnt"></i>
+                    <p>Events</p>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="eventDropdownMenuLink">
+                    <li><a class="dropdown-item" th:href="@{/events/all}">All Events</a></li>
+                    <li><a class="dropdown-item" th:href="@{/events/add}">Add Event</a></li>
+                </ul>
+            </li>
+            <li sec:authorize="hasRole('ROLE_ADMIN')">
+                <a class="admin dropdown" href="#" id="adminDropdownMenuLink" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="adm"></i>
+                    <p>Admin panel</p>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="adminDropdownMenuLink">
+                    <li><a class="dropdown-item" th:href="@{#}">Add User</a></li>
+                    <li><a class="dropdown-item" th:href="@{#}">Role Management</a></li>
+                    <li><a class="dropdown-item" th:href="@{#}">Manage Fixed Expenses</a></li>
+                </ul>
+
+            </li>
+        </ul>
+    </div>
+</div>
+
+<footer th:fragment="footer" id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-right fixed-bottom">
+                <div class="copyright">
+                    © Copyright <strong>FaM.Ma</strong> 2021. All Rights Reserved
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

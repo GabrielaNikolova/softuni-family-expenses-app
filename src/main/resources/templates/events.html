@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/fragments :: head"></head>
+<body class="dashboard">
+<div class="wrapper">
+    <div th:replace="fragments/fragments :: sidebar"></div>
+
+    <div class="main-panel">
+        <!-- Navbar -->
+        <nav th:replace="fragments/fragments :: nav2"></nav>
+        <!-- End Navbar -->
+        <div class="content">
+            <div class="row">
+                <div class="col-sm-10 mx-auto text-center page-hero" style="padding-bottom: 10px">
+                    <h4>Family Events Calendar</h4>
+                </div>
+            </div>
+            <div id="app"></div>
+<!--            <div class="row">-->
+<!--                <div class="col-md-8">-->
+<!--                    <div class="planner">-->
+<!--                        <div class="calendar">-->
+<!--                            <div class="calendar-header">-->
+<!--                                <span class="" style="font-size: 20px">Calendar</span>-->
+<!--                                <span class="btn btn-prev">-->
+<!--				<i class="fas fa-chevron-left"></i>-->
+<!--			</span>-->
+
+<!--                                <span class="" style="font-size: 20px">July</span>-->
+
+<!--                                <span class="btn btn-next">-->
+<!--				<i class="fas fa-chevron-right"></i>-->
+<!--			</span>-->
+<!--                            </div>-->
+<!--                            <table>-->
+<!--                                <thead>-->
+<!--                                <tr class="text-center">-->
+<!--                                    <th>SUN</th>-->
+<!--                                    <th>MON</th>-->
+<!--                                    <th>TUE</th>-->
+<!--                                    <th>WED</th>-->
+<!--                                    <th>THU</th>-->
+<!--                                    <th>FRI</th>-->
+<!--                                    <th>SAT</th>-->
+<!--                                </tr>-->
+<!--                                </thead>-->
+<!--                                <tbody>-->
+<!--                                <tr>-->
+<!--                                    <td><span>30</span></td>-->
+<!--                                    <td><span>1</span></td>-->
+<!--                                    <td><span>2</span></td>-->
+<!--                                    <td><span>3</span></td>-->
+<!--                                    <td><span>4</span></td>-->
+<!--                                    <td><span>5</span></td>-->
+<!--                                    <td><span>6</span></td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td><span>7</span></td>-->
+<!--                                    <td><span>8</span></td>-->
+<!--                                    <td><span>9</span></td>-->
+<!--                                    <td><span>10</span></td>-->
+<!--                                    <td><span>11</span></td>-->
+<!--                                    <td><span>12</span></td>-->
+<!--                                    <td><span>13</span></td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td><span>14</span></td>-->
+<!--                                    <td><span>15</span></td>-->
+<!--                                    <td><span>16</span></td>-->
+<!--                                    <td><span>17</span></td>-->
+<!--                                    <td><span>18</span></td>-->
+<!--                                    <td><span>19</span></td>-->
+<!--                                    <td><span>20</span></td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td><span>21</span></td>-->
+<!--                                    <td><span>22</span></td>-->
+<!--                                    <td><span>23</span></td>-->
+<!--                                    <td><span>24</span></td>-->
+<!--                                    <td><span>25</span></td>-->
+<!--                                    <td><span>27</span></td>-->
+<!--                                    <td><span>27</span></td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td><span>28</span></td>-->
+<!--                                    <td><span>29</span></td>-->
+<!--                                    <td><span>31</span></td>-->
+<!--                                </tr>-->
+<!--                                </tbody>-->
+<!--                            </table>-->
+<!--                        </div>-->
+<!--                        <div class="schedule">-->
+<!--                            <ul class="tabs">-->
+<!--                                <li class="tab active"><a href="#">Meetings</a></li>-->
+<!--                                <li class="tab"><a href="#">Reminders</a></li>-->
+<!--                                <li class="tab"><a href="#">Notes</a></li>-->
+<!--                            </ul>-->
+<!--                            <div class="tab-pane">-->
+<!--                                <div class="schedule-list">-->
+<!--                                    <div class="schedule-item">-->
+<!--                                        <div class="time">-->
+<!--                                            <span>9</span>-->
+<!--                                            <span>th</span>-->
+<!--                                        </div>-->
+<!--                                        <div class="description">-->
+<!--                                            <div class="description-header">Brainstorm on User Stories</div>-->
+<!--                                            <div class="description-content">-->
+<!--                                                <p>Lorem Ipsum dolor sit amet.</p>-->
+<!--                                                <ul class="contact-list">-->
+<!--                                                </ul>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="schedule-item free">-->
+<!--                                        <div class="time">-->
+<!--                                            <span>10</span>-->
+<!--                                            <span>th</span>-->
+<!--                                        </div>-->
+<!--                                        <div class="description">-->
+<!--                                            <div class="description-header">No Schedule</div>-->
+<!--                                            <div class="description-content">&nbsp;</div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                <div class="col px-md-5">-->
+<!--                    <div class="form-group row justify-content-center">-->
+<!--                        <div class="col-sm-auto rounded" style="background-color: #333a6e">-->
+<!--                            <a type="button" class="btn text-wrap" style="color: #f8f0f3" href="/events/add">Add-->
+<!--                                New Event-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--               -->
+
+
+<!--            </div>-->
+
+            <footer th:replace="fragments/fragments :: footer"></footer>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+crossorigin="anonymous"></script>
+<script src="/js/script.js"></script>
+</body>
+</html>

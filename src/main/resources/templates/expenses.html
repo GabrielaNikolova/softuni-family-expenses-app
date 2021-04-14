@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/fragments :: head"></head>
+<body class="dashboard">
+<div class="wrapper">
+    <div th:replace="fragments/fragments :: sidebar"></div>
+
+    <div class="main-panel">
+        <!-- Navbar -->
+        <nav th:replace="fragments/fragments :: nav2"></nav>
+        <!-- End Navbar -->
+        <div class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header" style="line-height: 20px;">
+                            <h5 class="card-title text-center"> Fixed Expenses</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class=" text-primary">
+                                    <tr>
+                                        <th>
+                                            Category
+                                        </th>
+                                        <th>
+                                            Name
+                                        </th>
+                                        <th>
+                                            Type
+                                        </th>
+                                        <th>
+                                            Created On
+                                        </th>
+                                        <th>
+                                            Due Date
+                                        </th>
+                                        <th class="text-right">
+                                            Amount
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            Dakota Rice
+                                        </td>
+                                        <td>
+                                            Niger
+                                        </td>
+                                        <td>
+                                            Oud-Turnhout
+                                        </td>
+                                        <td>
+                                            Oud-Turnhout
+                                        </td>
+                                        <td>
+                                            Oud-Turnhout
+                                        </td>
+                                        <td class="text-right">
+                                            $36,738
+                                        </td>
+                                        <td>
+                                            <div class="btn-group rounded align-items-center"
+                                                 style="background-color: #333a6e">
+                                                <a type="button" class="btn btn-sm"
+                                                   style="color: #f8f0f3; text-align: center !important;"
+                                                   th:href="@{expenses/edit/{id}(id=*{id})}">Edit
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" style="line-height: 20px;">
+                            <h5 class="card-title text-center"> Periodic Expenses</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class=" text-primary">
+                                    <tr>
+                                        <th>
+                                            Category
+                                        </th>
+                                        <th>
+                                            Name
+                                        </th>
+                                        <th>
+                                            Type
+                                        </th>
+                                        <th>
+                                            Created On
+                                        </th>
+                                        <th>
+                                            Due Date
+                                        </th>
+                                        <th class="text-right">
+                                            Amount
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            Dakota Rice
+                                        </td>
+                                        <td>
+                                            Niger
+                                        </td>
+                                        <td>
+                                            Oud-Turnhout
+                                        </td>
+                                        <td>
+                                            Oud-Turnhout
+                                        </td>
+                                        <td>
+                                            Oud-Turnhout
+                                        </td>
+                                        <td class="text-right">
+                                            $36,738
+                                        </td>
+                                        <td>
+                                            <div class="btn-group rounded align-items-center"
+                                                 style="background-color: #333a6e">
+                                                <a type="button" class="btn btn-sm"
+                                                   style="color: #f8f0f3; text-align: center !important;"
+                                                   th:href="@{expenses/edit/{id}(id=*{id})}">Edit
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" style="line-height: 20px;">
+                            <h5 class="card-title text-center"> Variable Expenses</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class=" text-primary">
+                                    <tr>
+                                        <th>
+                                            Category
+                                        </th>
+                                        <th>
+                                            Name
+                                        </th>
+                                        <th>
+                                            Type
+                                        </th>
+                                        <th>
+                                            Created On
+                                        </th>
+                                        <th>
+                                            Due Date
+                                        </th>
+                                        <th class="text-right">
+                                            Amount
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            Dakota Rice
+                                        </td>
+                                        <td>
+                                            Niger
+                                        </td>
+                                        <td>
+                                            Oud-Turnhout
+                                        </td>
+                                        <td>
+                                            Oud-Turnhout
+                                        </td>
+                                        <td>
+                                            Oud-Turnhout
+                                        </td>
+                                        <td class="text-right">
+                                            $36,738
+                                        </td>
+                                        <td>
+                                            <div class="btn-group rounded align-items-center"
+                                                 style="background-color: #333a6e">
+                                                <a type="button" class="btn btn-sm"
+                                                   style="color: #f8f0f3; text-align: center !important;"
+                                                   th:href="@{expenses/edit/{id}(id=*{id})}">Edit
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mx-md-n5">
+                <div class="col px-md-5">
+                    <div class="form-group row justify-content-center">
+                        <div class="col-sm-auto rounded" style="background-color: #333a6e">
+                            <a type="button" class="btn text-wrap" style="color: #f8f0f3" href="/expenses/add">Add
+                                New Expense
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer th:replace="fragments/fragments :: footer"></footer>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>
+</body>
+</html>
