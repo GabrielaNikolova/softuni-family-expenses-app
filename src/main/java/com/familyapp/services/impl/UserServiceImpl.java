@@ -1,9 +1,6 @@
 package com.familyapp.services.impl;
 
-import com.familyapp.models.entities.Expense;
-import com.familyapp.models.entities.Family;
-import com.familyapp.models.entities.Role;
-import com.familyapp.models.entities.User;
+import com.familyapp.models.entities.*;
 import com.familyapp.models.enumModels.RoleEnums;
 import com.familyapp.models.serviceModels.UserRegistrationServModel;
 import com.familyapp.models.viewModels.UserViewModel;
@@ -106,10 +103,19 @@ public class UserServiceImpl implements UserService {
     public void updateUserExpenses(Long expenseId) {
         User user = findByName(SecurityContextHolder.getContext().getAuthentication().getName());
         List<Expense> expenses = user.getExpenses();
-        List<Expense> newList = expenses;
 
-        newList.removeIf(e -> e.getId().equals(expenseId));
-        user.setExpenses(newList);
+        expenses.removeIf(e -> e.getId().equals(expenseId));
+        user.setExpenses(expenses);
+
+    }
+
+    @Override
+    public void updateUserEvents(Long eventId) {
+        User user = findByName(SecurityContextHolder.getContext().getAuthentication().getName());
+        List<Event> newList = user.getEvents();
+
+        newList.removeIf(e -> e.getId().equals(eventId));
+        user.setEvents(newList);
 
     }
 

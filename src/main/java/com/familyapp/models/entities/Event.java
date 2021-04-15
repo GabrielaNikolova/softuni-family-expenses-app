@@ -38,7 +38,7 @@ public class Event extends BaseEntity {
         return belongTo;
     }
 
-    @Column(name = "note", nullable = false, columnDefinition = "TEXT")
+    @Column(name = "note", nullable = true, columnDefinition = "TEXT")
     public String getNote() {
         return note;
     }

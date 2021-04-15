@@ -19,4 +19,6 @@ public interface UserService {
     void updateUserExpenses(Long expenseId);
 
     List<UserViewModel> getAllFamilyMembers();
+
+    void updateUserEvents(Long eventId);
 }
