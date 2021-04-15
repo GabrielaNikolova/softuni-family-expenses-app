@@ -4,7 +4,7 @@ import com.familyapp.models.enumModels.ExpenseCategoryEnum;
 import com.familyapp.models.enumModels.ExpenseTypeEnum;
 
 import javax.persistence.*;
-import java.math.BigInteger;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 
@@ -14,10 +14,10 @@ public class Expense extends BaseEntity {
     private String expenseName;
     private ExpenseTypeEnum expenseType;
     private ExpenseCategoryEnum expenseCategory;
-    private BigInteger amount;
+    private BigDecimal amount;
     private LocalDate createdOn;
     private LocalDate dueDate;
-    private String belongTo;
+    //private String belongTo;
     private User addedFrom;
 
 
@@ -42,7 +42,7 @@ public class Expense extends BaseEntity {
     }
 
     @Column
-    public BigInteger getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 
@@ -51,7 +51,7 @@ public class Expense extends BaseEntity {
         return createdOn;
     }
 
-    @Column(name = "due_date", nullable = false)
+    @Column(name = "due_date", nullable = true)
     public LocalDate getDueDate() {
         return dueDate;
     }
@@ -62,15 +62,15 @@ public class Expense extends BaseEntity {
     }
 
 
-    @Column(name = "belong_to", nullable = false)
-    public String getBelongTo() {
-        return belongTo;
-    }
-
-    public Expense setBelongTo(String belongTo) {
-        this.belongTo = belongTo;
-        return this;
-    }
+//    @Column(name = "belong_to", nullable = false)
+//    public String getBelongTo() {
+//        return belongTo;
+//    }
+//
+//    public Expense setBelongTo(String belongTo) {
+//        this.belongTo = belongTo;
+//        return this;
+//    }
 
     public Expense setAddedFrom(User addedFrom) {
         this.addedFrom = addedFrom;
@@ -92,7 +92,7 @@ public class Expense extends BaseEntity {
         return this;
     }
 
-    public Expense setAmount(BigInteger amount) {
+    public Expense setAmount(BigDecimal amount) {
         this.amount = amount;
         return this;
     }

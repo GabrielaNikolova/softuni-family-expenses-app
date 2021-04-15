@@ -13,8 +13,8 @@ public class User extends BaseEntity {
     private Budget privateBudget;
     private List<Income> privateIncomes;
     private List<Role> roles;
-    //    private List<Expense> expenses;
-//    private List<Event> events;
+    private List<Expense> expenses;
+    private List<Event> events;
     private Family family;
 
 
@@ -57,18 +57,18 @@ public class User extends BaseEntity {
         return roles;
     }
 
-//    @OneToMany
-//    public List<Expense> getExpenses() {
-//        return expenses;
-//    }
-//
-//    @OneToMany
-//    public List<Event> getEvents() {
-//        return events;
-//    }
+    @OneToMany
+    public List<Expense> getExpenses() {
+        return expenses;
+    }
+
+    @OneToMany
+    public List<Event> getEvents() {
+        return events;
+    }
 
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     public Family getFamily() {
         return family;
     }
@@ -119,13 +119,13 @@ public class User extends BaseEntity {
         return this;
     }
 
-//    public User setExpenses(List<Expense> expenses) {
-//        this.expenses = expenses;
-//        return this;
-//    }
-//
-//    public User setEvents(List<Event> events) {
-//        this.events = events;
-//        return this;
-//    }
+    public User setExpenses(List<Expense> expenses) {
+        this.expenses = expenses;
+        return this;
+    }
+
+    public User setEvents(List<Event> events) {
+        this.events = events;
+        return this;
+    }
 }

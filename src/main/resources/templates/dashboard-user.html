@@ -80,7 +80,9 @@
                                 <div class="col-7 col-md-8">
                                     <div class="numbers">
                                         <p class="card-category">Expenses</p>
-                                        <p class="card-title">$ 750</p>
+                                        <p class="card-title"></p><span
+                                            th:utext="${'&#36;'+'&nbsp;'}"></br></span><span
+                                            th:text="${userExpenses}"></span>
                                         <p>
                                         </p></div>
                                 </div>
@@ -90,7 +92,7 @@
                             <hr>
                             <div class="stats">
                                 <i class="fa fa-clock-o"></i>
-                                Last Day
+                                Last Month
                             </div>
                         </div>
                     </div>

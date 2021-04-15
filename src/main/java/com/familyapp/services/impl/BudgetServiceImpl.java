@@ -5,7 +5,6 @@ import com.familyapp.models.entities.User;
 import com.familyapp.repositories.BudgetRepo;
 import com.familyapp.services.BudgetService;
 import com.familyapp.services.UserService;
-import org.modelmapper.ModelMapper;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -17,12 +16,10 @@ public class BudgetServiceImpl implements BudgetService {
 
     private final BudgetRepo budgetRepo;
     private final UserService userService;
-    private final ModelMapper modelMapper;
 
-    public BudgetServiceImpl(BudgetRepo budgetRepo, UserService userService, ModelMapper modelMapper) {
+    public BudgetServiceImpl(BudgetRepo budgetRepo, UserService userService) {
         this.budgetRepo = budgetRepo;
         this.userService = userService;
-        this.modelMapper = modelMapper;
     }
 
     @Override
@@ -62,20 +59,29 @@ public class BudgetServiceImpl implements BudgetService {
         return BigDecimal.valueOf(budgetAmount);
     }
 
+    @Override
+    public void subtractExpenseFromBudget(BigDecimal expense, LocalDate expenseDueDate) {
+        User user = userService.findByName(SecurityContextHolder.getContext().getAuthentication().getName());
+        Budget budget = budgetRepo.findByAddedBy_Username(user.getUsername());
 
-//    @Override
-//    public  List<BudgetViewModel> findAllByUser() {
-//        return budgetRepo.findAllByAddedBy(SecurityContextHolder.getContext().getAuthentication().getName())
-//                .stream().map(b->modelMapper.map(b, BudgetViewModel.class))
-//                .collect(Collectors.toList());
-//    }
-//
-//    @Override
-//    public BudgetViewModel findByMonth() {
-//        BudgetViewModel montlyBudget = findAllByUser()
-//                .forEach(b -> b.getReceivedOn().getMonth().getValue());
-//        return null;
-//    }
+        if (budget == null) {
+            Budget newBudget = new Budget();
+            newBudget
+                    .setBudgetAmount(BigDecimal.valueOf(0).subtract(expense))
+                    .setEditedOn(LocalDate.now())
+                    .setAddedBy(user);
 
+            budgetRepo.save(newBudget);
+            user.setPrivateBudget(newBudget);
+        } else {
+            budget
+                    .setBudgetAmount(budget.getBudgetAmount().subtract(expense))
+                    .setEditedOn(LocalDate.now())
+                    .setAddedBy(user);
+
+            budgetRepo.save(budget);
+            user.setPrivateBudget(budget);
+        }
+    }
 
 }

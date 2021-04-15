@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.DecimalMin;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -19,6 +20,7 @@ public class Budget extends BaseEntity{
     }
 
     @Column(name = "budget_amount", nullable = false)
+    @DecimalMin(value = "-1000", message = "Warning: You've reached the overdraft maximum!")
     public BigDecimal getBudgetAmount() {
         return budgetAmount;
     }

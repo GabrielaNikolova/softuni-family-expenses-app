@@ -60,7 +60,7 @@ public class IncomeServiceImpl implements IncomeService {
     }
 
     @Override
-    public BigDecimal getIncomeByUser() {
+    public BigDecimal getMonthlyIncomeByUser() {
         User user = userService.findByName(SecurityContextHolder.getContext().getAuthentication().getName());
         Long incomeAmount = incomeRepo.findIncomeAmountByUser(user.getId());
 

@@ -27,7 +27,7 @@ public class IncomeAddBindModel {
         return savingsAmount;
     }
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @FutureOrPresent(message = "Date cannot be in the past")
     public LocalDate getReceivedOn() {
         return receivedOn;
