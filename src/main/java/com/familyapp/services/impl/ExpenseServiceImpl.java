@@ -2,7 +2,9 @@ package com.familyapp.services.impl;
 
 import com.familyapp.models.entities.Expense;
 import com.familyapp.models.entities.User;
+import com.familyapp.models.enumModels.ExpenseTypeEnum;
 import com.familyapp.models.serviceModels.ExpenseAddServModel;
+import com.familyapp.models.viewModels.ExpenseViewModel;
 import com.familyapp.repositories.ExpenseRepo;
 import com.familyapp.services.BudgetService;
 import com.familyapp.services.ExpenseService;
@@ -16,6 +18,8 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ExpenseServiceImpl implements ExpenseService {
@@ -67,5 +71,43 @@ public class ExpenseServiceImpl implements ExpenseService {
         }
 
         return BigDecimal.valueOf(expensesAmount);
+    }
+
+    @Override
+    public List<ExpenseViewModel> getAllByUser() {
+        List<Expense> expenses = expenseRepo.findAllByAddedFrom_Username(SecurityContextHolder.getContext().getAuthentication().getName());
+
+        if (expenses.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        return expenses.stream()
+                .map(e -> modelMapper.map(e, ExpenseViewModel.class))
+                .filter(e -> e.getCreatedOn().getMonth().equals(LocalDate.now().getMonth()))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ExpenseViewModel> getAllByUserAndType(String expenseType) {
+        List<Expense> expensesByType = expenseRepo.findAllByAddedFrom_UsernameAndExpenseTypeOrderByExpenseCategory(SecurityContextHolder.getContext().getAuthentication().getName(), ExpenseTypeEnum.valueOf(expenseType));
+
+        if (expensesByType.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        return expensesByType.stream()
+                .map(e -> modelMapper.map(e, ExpenseViewModel.class))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public void deleteExpenseById(String id) {
+        Optional<Expense> expense = expenseRepo.findById(Long.valueOf(id));
+
+        if (expense.isPresent()) {
+            budgetService.addBudget(expense.get().getAmount());
+            userService.updateUserExpenses(Long.valueOf(id));
+            expenseRepo.deleteById(Long.valueOf(id));
+        }
     }
 }

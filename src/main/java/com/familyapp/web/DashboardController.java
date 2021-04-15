@@ -27,6 +27,7 @@ public class DashboardController {
         model.addAttribute("userIncome", incomeService.getMonthlyIncomeByUser());
         model.addAttribute("userExpenses", expenseService.getMonthlyExpensesByUser());
         model.addAttribute("userSavings", incomeService.getSavingsByUser());
+        model.addAttribute("monthlyExpenses", expenseService.getAllByUser());
         return "dashboard-user";
     }
 

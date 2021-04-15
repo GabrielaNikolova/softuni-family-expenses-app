@@ -1,10 +1,10 @@
 package com.familyapp.services.impl;
 
+import com.familyapp.models.entities.Expense;
 import com.familyapp.models.entities.Family;
 import com.familyapp.models.entities.Role;
 import com.familyapp.models.entities.User;
 import com.familyapp.models.enumModels.RoleEnums;
-import com.familyapp.models.serviceModels.UserLoginServModel;
 import com.familyapp.models.serviceModels.UserRegistrationServModel;
 import com.familyapp.repositories.UserRepo;
 import com.familyapp.services.FamilyService;
@@ -99,22 +99,16 @@ public class UserServiceImpl implements UserService {
         SecurityContextHolder.getContext().setAuthentication(authentication);
     }
 
-//    @Override
-//    @Transactional
-//    public void loginUser(UserLoginServModel userServiceModel) {
-//        User user = userRepo.findByUsername(userServiceModel.getUsername()).orElseThrow(IllegalArgumentException::new);
-//
-//        UserDetails principal = userDetailsAppService.loadUserByUsername(user.getUsername());
-//
-//        Authentication authentication = new UsernamePasswordAuthenticationToken(
-//                principal,
-//                user.getPassword(),
-//                principal.getAuthorities()
-//        );
-//
-//        System.out.println(authentication);
-//
-//        SecurityContextHolder.getContext().setAuthentication(authentication);
-//
-//    }
+    @Override
+    @Transactional
+    public void updateUserExpenses(Long expenseId) {
+        User user = findByName(SecurityContextHolder.getContext().getAuthentication().getName());
+        List<Expense> expenses = user.getExpenses();
+        List<Expense> newList = expenses;
+
+        newList.removeIf(e -> e.getId().equals(expenseId));
+        user.setExpenses(newList);
+
+    }
+
 }

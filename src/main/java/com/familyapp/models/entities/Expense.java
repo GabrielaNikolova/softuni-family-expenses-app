@@ -17,7 +17,6 @@ public class Expense extends BaseEntity {
     private BigDecimal amount;
     private LocalDate createdOn;
     private LocalDate dueDate;
-    //private String belongTo;
     private User addedFrom;
 
 
@@ -61,16 +60,6 @@ public class Expense extends BaseEntity {
         return addedFrom;
     }
 
-
-//    @Column(name = "belong_to", nullable = false)
-//    public String getBelongTo() {
-//        return belongTo;
-//    }
-//
-//    public Expense setBelongTo(String belongTo) {
-//        this.belongTo = belongTo;
-//        return this;
-//    }
 
     public Expense setAddedFrom(User addedFrom) {
         this.addedFrom = addedFrom;
