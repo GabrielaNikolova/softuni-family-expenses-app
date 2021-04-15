@@ -16,4 +16,6 @@ public interface ExpenseService {
     List<ExpenseViewModel> getAllByUserAndType(String expenseType);
 
     void deleteExpenseById(String id);
+
+    ExpenseViewModel getExpenseById(String id);
 }

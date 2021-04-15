@@ -110,4 +110,12 @@ public class ExpenseServiceImpl implements ExpenseService {
             expenseRepo.deleteById(Long.valueOf(id));
         }
     }
+
+    @Override
+    public ExpenseViewModel getExpenseById(String id) {
+        Expense expense = expenseRepo.findById(Long.valueOf(id)).orElseThrow(IllegalArgumentException::new);
+        ExpenseViewModel expenseView = modelMapper.map(expense, ExpenseViewModel.class);
+        expenseView.setAddedFrom(SecurityContextHolder.getContext().getAuthentication().getName());
+        return expenseView;
+    }
 }
