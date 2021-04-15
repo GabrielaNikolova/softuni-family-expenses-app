@@ -2,6 +2,9 @@ package com.familyapp.services;
 
 import com.familyapp.models.entities.User;
 import com.familyapp.models.serviceModels.UserRegistrationServModel;
+import com.familyapp.models.viewModels.UserViewModel;
+
+import java.util.List;
 
 public interface UserService {
 
@@ -14,4 +17,6 @@ public interface UserService {
     void registerAndLoginUser(UserRegistrationServModel userServiceModel);
 
     void updateUserExpenses(Long expenseId);
+
+    List<UserViewModel> getAllFamilyMembers();
 }

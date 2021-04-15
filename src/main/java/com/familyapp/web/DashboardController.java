@@ -3,6 +3,7 @@ package com.familyapp.web;
 import com.familyapp.services.BudgetService;
 import com.familyapp.services.ExpenseService;
 import com.familyapp.services.IncomeService;
+import com.familyapp.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,11 +13,13 @@ public class DashboardController {
     private final BudgetService budgetService;
     private final IncomeService incomeService;
     private final ExpenseService expenseService;
+    private final UserService userService;
 
-    public DashboardController(BudgetService budgetService, IncomeService incomeService, ExpenseService expenseService) {
+    public DashboardController(BudgetService budgetService, IncomeService incomeService, ExpenseService expenseService, UserService userService) {
         this.budgetService = budgetService;
         this.incomeService = incomeService;
         this.expenseService = expenseService;
+        this.userService = userService;
     }
 
 
@@ -38,6 +41,8 @@ public class DashboardController {
         model.addAttribute("familyIncome", incomeService.getMonthlyIncomeByFamily());
         model.addAttribute("familyExpenses", expenseService.getMonthlyExpensesByFamily());
         model.addAttribute("familySavings", incomeService.getSavingsByFamily());
+        model.addAttribute("monthlyFamilyExpenses", expenseService.getAllByFamily());
+        model.addAttribute("familyMembers", userService.getAllFamilyMembers());
         return "dashboard-family";
     }
 }

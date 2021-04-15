@@ -33,7 +33,7 @@
                             <hr>
                             <div class="stats">
                                 <i class="fa fa-refresh"></i>
-                                Update Now
+                                Updated
                             </div>
                         </div>
                     </div>
@@ -60,7 +60,7 @@
                             <hr>
                             <div class="stats">
                                 <i class="fa fa-calendar-o"></i>
-                                Last day
+                                Last Month
                             </div>
                         </div>
                     </div>
@@ -88,7 +88,7 @@
                             <hr>
                             <div class="stats">
                                 <i class="fa fa-clock-o"></i>
-                                In the last hour
+                                Last Month
                             </div>
                         </div>
                     </div>
@@ -116,7 +116,7 @@
                             <hr>
                             <div class="stats">
                                 <i class="fa fa-refresh"></i>
-                                Update now
+                                Total
                             </div>
                         </div>
                     </div>
@@ -133,29 +133,17 @@
                                 <table class="table">
                                     <thead class=" text-primary">
                                     <tr>
-                                        <th>
-                                            Full Name
-                                        </th>
-                                        <th>
-                                            Role
-                                        </th>
+                                        <th>Username</th>
+                                        <th>Full Name</th>
+                                        <th>Roles</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>
-                                            Dakota Rice
-                                        </td>
-                                        <td>
-                                            Niger
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Minerva Hooper
-                                        </td>
-                                        <td>
-                                            Curaçao
+                                    <tr th:each="fm : ${familyMembers}">
+                                        <td th:text="${fm.username}"></td>
+                                        <td th:text="${fm.fullName}"></td>
+                                        <td th:each="r : ${fm.roles}">
+                                            <span th:text="*{r}"></span>//TODO think how can visualize it better
                                         </td>
                                     </tr>
                                     </tbody>
@@ -179,75 +167,31 @@
                                 <table class="table">
                                     <thead class=" text-primary">
                                     <tr>
-                                        <th>
-                                            Category
-                                        </th>
-                                        <th>
-                                            Name
-                                        </th>
-                                        <th>
-                                            Type
-                                        </th>
-                                        <th>
-                                            Created On
-                                        </th>
-                                        <th>
-                                            Due Date
-                                        </th>
-                                        <th class="text-right">
-                                            Amount
-                                        </th>
+                                        <th> Category</th>
+                                        <th> Name</th>
+                                        <!--                                        <th> Type</th>-->
+                                        <!--                                        <th> Created On</th>-->
+                                        <th> Due Date</th>
+                                        <th class="text-right">Amount</th>
                                         <th></th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>
-                                            Dakota Rice
-                                        </td>
-                                        <td>
-                                            Niger
-                                        </td>
-                                        <td>
-                                            Oud-Turnhout
-                                        </td>
-                                        <td>
-                                            Oud-Turnhout
-                                        </td>
-                                        <td>
-                                            Oud-Turnhout
-                                        </td>
-                                        <td class="text-right">
-                                            $36,738
-                                        </td>
-                                        <td>
+                                    <tr th:each="me : ${monthlyFamilyExpenses}" th:object="${me}">
+                                        <td th:text="*{expenseCategory}"></td>
+                                        <td th:text="*{expenseName}"></td>
+                                        <!--                                        <td th:text="*{expenseType}"></td>-->
+                                        <!--                                        <td th:text="*{createdOn}"></td>-->
+                                        <td th:text="*{dueDate}"></td>
+                                        <td th:text="*{amount}" class="text-right"></td>
+                                        <td style="text-align: center">
                                             <div class="btn-group rounded align-items-center"
                                                  style="background-color: #333a6e">
                                                 <a type="button" class="btn btn-sm"
                                                    style="color: #f8f0f3; text-align: center !important;"
-                                                   th:href="@{expenses/edit/{id}(id=*{id})}">Edit
+                                                   th:href="@{/expenses/details/{id}(id=*{id})}">Details
                                                 </a>
                                             </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Minerva Hooper
-                                        </td>
-                                        <td>
-                                            Curaçao
-                                        </td>
-                                        <td>
-                                            Sinaai-Waas
-                                        </td>
-                                        <td>
-                                            Sinaai-Waas
-                                        </td>
-                                        <td>
-                                            Sinaai-Waas
-                                        </td>
-                                        <td class="text-right">
-                                            $23,789
                                         </td>
                                     </tr>
                                     </tbody>

@@ -20,4 +20,6 @@ public interface ExpenseRepo extends JpaRepository<Expense, Long> {
     List<Expense> findAllByAddedFrom_Username(String username);
 
     List<Expense> findAllByAddedFrom_UsernameAndExpenseTypeOrderByExpenseCategory(String username, ExpenseTypeEnum type);
+
+    List<Expense> findAllByAddedFrom_Family_Id(Long id);
 }

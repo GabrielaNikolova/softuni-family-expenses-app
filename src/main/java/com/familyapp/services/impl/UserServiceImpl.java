@@ -6,6 +6,7 @@ import com.familyapp.models.entities.Role;
 import com.familyapp.models.entities.User;
 import com.familyapp.models.enumModels.RoleEnums;
 import com.familyapp.models.serviceModels.UserRegistrationServModel;
+import com.familyapp.models.viewModels.UserViewModel;
 import com.familyapp.repositories.UserRepo;
 import com.familyapp.services.FamilyService;
 import com.familyapp.services.RoleService;
@@ -21,6 +22,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -109,6 +111,22 @@ public class UserServiceImpl implements UserService {
         newList.removeIf(e -> e.getId().equals(expenseId));
         user.setExpenses(newList);
 
+    }
+
+    @Override
+    public List<UserViewModel> getAllFamilyMembers() {
+        User user = findByName(SecurityContextHolder.getContext().getAuthentication().getName());
+        List<User> users = userRepo.findAllByFamily_Id(user.getFamily().getId());
+
+        List<UserViewModel> userViews = users.stream()
+                .map(u -> {
+                    UserViewModel userView = modelMapper.map(u, UserViewModel.class);
+                    List<String> userRoles = u.getRoles().stream().map(r -> String.valueOf(r.getName())).collect(Collectors.toList());
+                    userView.setRoles(userRoles);
+                    return userView;
+                }).collect(Collectors.toList());
+
+        return userViews;
     }
 
 }

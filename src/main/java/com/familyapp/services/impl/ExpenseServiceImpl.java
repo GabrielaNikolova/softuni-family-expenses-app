@@ -130,4 +130,19 @@ public class ExpenseServiceImpl implements ExpenseService {
         expenseView.setAddedFrom(SecurityContextHolder.getContext().getAuthentication().getName());
         return expenseView;
     }
+
+    @Override
+    public List<ExpenseViewModel> getAllByFamily() {
+        User user = userService.findByName(SecurityContextHolder.getContext().getAuthentication().getName());
+        List<Expense> expenses = expenseRepo.findAllByAddedFrom_Family_Id(user.getFamily().getId());
+
+        if (expenses.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        return expenses.stream()
+                .map(e -> modelMapper.map(e, ExpenseViewModel.class))
+                .filter(e -> e.getCreatedOn().getMonth().equals(LocalDate.now().getMonth()))
+                .collect(Collectors.toList());
+    }
 }

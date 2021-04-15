@@ -20,4 +20,6 @@ public interface ExpenseService {
     void deleteExpenseById(String id);
 
     ExpenseViewModel getExpenseById(String id);
+
+    List<ExpenseViewModel> getAllByFamily();
 }
