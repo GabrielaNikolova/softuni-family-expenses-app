@@ -82,4 +82,28 @@ public class IncomeServiceImpl implements IncomeService {
 
         return BigDecimal.valueOf(savingsAmount);
     }
+
+    @Override
+    public BigDecimal getMonthlyIncomeByFamily() {
+        User user = userService.findByName(SecurityContextHolder.getContext().getAuthentication().getName());
+        Long incomeAmount = incomeRepo.findIncomeAmountByFamily(user.getFamily().getId());
+
+        if (incomeAmount == null) {
+            return BigDecimal.valueOf(0);
+        }
+
+        return BigDecimal.valueOf(incomeAmount);
+    }
+
+    @Override
+    public BigDecimal getSavingsByFamily() {
+        User user = userService.findByName(SecurityContextHolder.getContext().getAuthentication().getName());
+        Long savingsAmount = incomeRepo.findSavingsAmountByFamily(user.getFamily().getId());
+
+        if (savingsAmount == null) {
+            return BigDecimal.valueOf(0);
+        }
+
+        return BigDecimal.valueOf(savingsAmount);
+    }
 }

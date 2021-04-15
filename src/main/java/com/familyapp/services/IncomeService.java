@@ -10,4 +10,8 @@ public interface IncomeService {
     BigDecimal getMonthlyIncomeByUser();
 
     BigDecimal getSavingsByUser();
+
+    BigDecimal getMonthlyIncomeByFamily();
+
+    BigDecimal getSavingsByFamily();
 }

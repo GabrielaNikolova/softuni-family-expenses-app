@@ -11,6 +11,8 @@ public interface ExpenseService {
 
     BigDecimal getMonthlyExpensesByUser();
 
+    BigDecimal getMonthlyExpensesByFamily();
+
     List<ExpenseViewModel> getAllByUser();
 
     List<ExpenseViewModel> getAllByUserAndType(String expenseType);

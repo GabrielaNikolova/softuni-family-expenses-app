@@ -74,6 +74,18 @@ public class ExpenseServiceImpl implements ExpenseService {
     }
 
     @Override
+    public BigDecimal getMonthlyExpensesByFamily() {
+        User user = userService.findByName(SecurityContextHolder.getContext().getAuthentication().getName());
+        Long expensesAmount = expenseRepo.findExpensesByFamily(user.getFamily().getId());
+
+        if (expensesAmount == null) {
+            return BigDecimal.valueOf(0);
+        }
+
+        return BigDecimal.valueOf(expensesAmount);
+    }
+
+    @Override
     public List<ExpenseViewModel> getAllByUser() {
         List<Expense> expenses = expenseRepo.findAllByAddedFrom_Username(SecurityContextHolder.getContext().getAuthentication().getName());
 

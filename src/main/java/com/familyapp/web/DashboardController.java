@@ -32,7 +32,12 @@ public class DashboardController {
     }
 
     @GetMapping("/family/dashboard")
-    public String dashboardFamilyShow(){
+    public String dashboardFamilyShow(Model model) {
+
+        model.addAttribute("familyBudget", budgetService.getBudgetByFamily());
+        model.addAttribute("familyIncome", incomeService.getMonthlyIncomeByFamily());
+        model.addAttribute("familyExpenses", expenseService.getMonthlyExpensesByFamily());
+        model.addAttribute("familySavings", incomeService.getSavingsByFamily());
         return "dashboard-family";
     }
 }

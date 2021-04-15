@@ -8,6 +8,8 @@ public interface BudgetService {
 
     BigDecimal getBudgetByUser();
 
+    BigDecimal getBudgetByFamily();
+
     void subtractExpenseFromBudget(BigDecimal expense, LocalDate expenseDueDate);
 
 

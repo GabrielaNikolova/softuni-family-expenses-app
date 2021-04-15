@@ -60,6 +60,18 @@ public class BudgetServiceImpl implements BudgetService {
     }
 
     @Override
+    public BigDecimal getBudgetByFamily() {
+        User user = userService.findByName(SecurityContextHolder.getContext().getAuthentication().getName());
+        Long budgetAmount = budgetRepo.findBudgetAmountByFamily(user.getFamily().getId());
+
+        if (budgetAmount == null) {
+            return BigDecimal.valueOf(0);
+        }
+
+        return BigDecimal.valueOf(budgetAmount);
+    }
+
+    @Override
     public void subtractExpenseFromBudget(BigDecimal expense, LocalDate expenseDueDate) {
         User user = userService.findByName(SecurityContextHolder.getContext().getAuthentication().getName());
         Budget budget = budgetRepo.findByAddedBy_Username(user.getUsername());

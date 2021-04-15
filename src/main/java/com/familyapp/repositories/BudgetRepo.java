@@ -13,5 +13,8 @@ public interface BudgetRepo extends JpaRepository<Budget, Long> {
     @Query("SELECT b.budgetAmount FROM Budget AS b WHERE b.addedBy.id=:id")
     Long findBudgetAmountByUser(Long id);
 
+    @Query("SELECT SUM(b.budgetAmount) FROM Budget AS b WHERE b.addedBy.family.id=:id")
+    Long findBudgetAmountByFamily(Long id);
+
 
 }
