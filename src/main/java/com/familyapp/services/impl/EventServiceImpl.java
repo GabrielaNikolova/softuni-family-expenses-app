@@ -101,7 +101,7 @@ public class EventServiceImpl implements EventService {
                 .map(e -> {
                     EventViewModel event = modelMapper.map(e, EventViewModel.class);
                     event.setAddedFrom(SecurityContextHolder.getContext().getAuthentication().getName());
-                    event.setEventDate(e.getEventDate().format(DateTimeFormatter.ofPattern("ddMyyyy")));
+                    event.setEventDate(e.getEventDate().minusMonths(1).format(DateTimeFormatter.ofPattern("ddMyyyy")));
                     return event;
                 }).collect(Collectors.toList());
 
