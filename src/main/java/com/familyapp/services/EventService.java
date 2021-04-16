@@ -9,4 +9,6 @@ public interface EventService {
     EventViewModel getEventById(String id);
 
     void deleteEventById(String id);
+
+    String getAllByUser();
 }

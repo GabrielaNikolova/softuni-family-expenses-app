@@ -158,7 +158,9 @@ renderCalendar(month, year)
 
 $(function () {
     function showEvent(eventDate) {
-        let storedEvents = JSON.parse(localStorage.getItem('events'));
+        let storedEvents = JSON.parse(userEvents.toString());
+        //let storedEvents = JSON.parse(localStorage.getItem('events'));
+        console.log(storedEvents)
         if (storedEvents == null) {
             $('.events-today').html('<h5 class="text-center">No events found</h5 class="text-center">');
         } else {
@@ -167,30 +169,30 @@ $(function () {
             if (eventsList.length > 0) {
                 let eventsLi = '';
                 eventsList.forEach(event => $('.events-today').html(eventsLi += `<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    ${event.eventText}
-                    <button type="button" class="close remove-event" data-event-id="${event.id}" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>`));
+                    ${event.eventName}  
+                    <div class="btn-group rounded justify-content-end" style="background-color: #333a6e">    
+                        <a type="button" class="btn btn-sm events-details" style="color: #f8f0f3; font-size= 14px; text-align: center !important;" data-event-id="${event.id}">Details
+                        </a>               
+                    </div>
+                </div>
+                   `));
             } else {
                 $('.events-today').html('<h5 class="text-center">No events found</h5 class="text-center">');
             }
         }
     }
 
-    function removeEvent(id) {
-        let storedEvents = JSON.parse(localStorage.getItem('events'));
+
+    function getEventDetails(id) {
+        let storedEvents = JSON.parse(userEvents.toString());
         if (storedEvents != null) {
-            storedEvents = storedEvents.filter(ev => ev.id != id);
-            localStorage.setItem('events', JSON.stringify(storedEvents));
-            $('.toast-body').html('Your event have been removed');
-            $('.toast').toast('show');
+            window.location = '/events/details/' + id;
         }
     }
 
-    $(document).on('click', '.remove-event', function () {
+    $(document).on('click', '.events-details', function () {
         let eventId = $(this).data('event-id');
-        removeEvent(eventId);
+        getEventDetails(eventId);
     })
 
     $(document).on('click', '.prevMonth', function () {
@@ -211,56 +213,57 @@ $(function () {
         let todaysDate = $(this).text() + ' ' + (months[month]) + ' ' + year;
         let eventDay = days[new Date(year, month, $(this).text()).getDay()];
         let eventDate = $(this).text() + month + year;
-        $('.event-date').html(todaysDate).data('eventdate', eventDate);
+        $('.event-date').html(todaysDate).data('eventDate', eventDate);
         $('.event-day').html(eventDay);
         showEvent(eventDate);
+        console.log(eventDate);
     })
     $(document).on('click', '.hide', function () {
         $('#event').addClass('d-none');
     })
-    $(document).on('click', '#createEvent', function () {
-        let events = localStorage.getItem('events');
-        let obj = [];
-        if (events) {
-            obj = JSON.parse(events);
-        }
-        let eventDate = $('.event-date').data('eventdate');
-        let eventText = $('#eventTxt').val();
-        let valid = false;
-        $('#eventTxt').removeClass('data-invalid');
-        $('.error').remove();
-        if (eventText == '') {
-            $('.events-input').append(`<span class="error">Please enter event</span>`);
-            $('#eventTxt').addClass('data-invalid');
-            $('#eventTxt').trigger('focus');
-        } else if (eventText.length < 3) {
-            $('#eventTxt').addClass('data-invalid');
-            $('#eventTxt').trigger('focus');
-            $('.events-input').append(`<span class="error">please enter at least three characters</span>`);
-        } else {
-            valid = true;
-        }
-        if (valid) {
-            let id = 1;
-            if (obj.length > 0) {
-                id = Math.max.apply('', obj.map(function (entry) {
-                    return parseFloat(entry.id);
-                })) + 1;
-            } else {
-                id = 1;
-            }
-            obj.push({
-                'id': id,
-                'eventDate': eventDate,
-                'eventText': eventText
-            });
-            localStorage.setItem('events', JSON.stringify(obj));
-            $('#eventTxt').val('');
-            $('.toast-body').html('Your event have been added');
-            $('.toast').toast('show');
-            showEvent(eventDate);
-        }
-    })
+    // $(document).on('click', '#createEvent', function () {
+    //     let events = localStorage.getItem('events');
+    //     let obj = [];
+    //     if (events) {
+    //         obj = JSON.parse(events);
+    //     }
+    //     let eventDate = $('.event-date').data('eventdate');
+    //     let eventText = $('#eventTxt').val();
+    //     let valid = false;
+    //     $('#eventTxt').removeClass('data-invalid');
+    //     $('.error').remove();
+    //     if (eventText == '') {
+    //         $('.events-input').append(`<span class="error">Please enter event</span>`);
+    //         $('#eventTxt').addClass('data-invalid');
+    //         $('#eventTxt').trigger('focus');
+    //     } else if (eventText.length < 3) {
+    //         $('#eventTxt').addClass('data-invalid');
+    //         $('#eventTxt').trigger('focus');
+    //         $('.events-input').append(`<span class="error">please enter at least three characters</span>`);
+    //     } else {
+    //         valid = true;
+    //     }
+    //     if (valid) {
+    //         let id = 1;
+    //         if (obj.length > 0) {
+    //             id = Math.max.apply('', obj.map(function (entry) {
+    //                 return parseFloat(entry.id);
+    //             })) + 1;
+    //         } else {
+    //             id = 1;
+    //         }
+    //         obj.push({
+    //             'id': id,
+    //             'eventDate': eventDate,
+    //             'eventText': eventText
+    //         });
+    //         localStorage.setItem('events', JSON.stringify(obj));
+    //         $('#eventTxt').val('');
+    //         $('.toast-body').html('Your event have been added');
+    //         $('.toast').toast('show');
+    //         showEvent(eventDate);
+    //     }
+    // })
 })
 
 
