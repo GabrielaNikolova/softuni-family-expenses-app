@@ -19,7 +19,7 @@ public class LogoutCustomHandler implements LogoutSuccessHandler {
     public void onLogoutSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
 
         HttpSession session = httpServletRequest.getSession();
-        session.setMaxInactiveInterval(60);
+        session.setMaxInactiveInterval(10 * 60);
         session.removeAttribute("user");
 
         String URL = httpServletRequest.getContextPath() + "/login";
