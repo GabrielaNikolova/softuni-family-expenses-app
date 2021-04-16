@@ -10,4 +10,6 @@ import java.util.List;
 public interface EventRepo extends JpaRepository<Event, Long> {
 
     List<Event> findAllByAddedFrom_Username(String username);
+
+    List<Event> findAllByAddedFrom_Family_Id(Long id);
 }

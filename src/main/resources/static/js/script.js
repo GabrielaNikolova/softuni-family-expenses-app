@@ -158,7 +158,7 @@ renderCalendar(month, year)
 
 $(function () {
     function showEvent(eventDate) {
-        let storedEvents = JSON.parse(userEvents.toString());
+        let storedEvents = JSON.parse(eventsList.toString());
         //let storedEvents = JSON.parse(localStorage.getItem('events'));
         console.log(storedEvents)
         if (storedEvents == null) {
@@ -184,7 +184,7 @@ $(function () {
 
 
     function getEventDetails(id) {
-        let storedEvents = JSON.parse(userEvents.toString());
+        let storedEvents = JSON.parse(eventsList.toString());
         if (storedEvents != null) {
             window.location = '/events/details/' + id;
         }
@@ -216,7 +216,6 @@ $(function () {
         $('.event-date').html(todaysDate).data('eventDate', eventDate);
         $('.event-day').html(eventDay);
         showEvent(eventDate);
-        console.log(eventDate);
     })
     $(document).on('click', '.hide', function () {
         $('#event').addClass('d-none');

@@ -11,4 +11,6 @@ public interface EventService {
     void deleteEventById(String id);
 
     String getAllByUser();
+
+    String getAllByFamily();
 }

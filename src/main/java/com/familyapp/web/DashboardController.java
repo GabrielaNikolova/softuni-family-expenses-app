@@ -1,9 +1,6 @@
 package com.familyapp.web;
 
-import com.familyapp.services.BudgetService;
-import com.familyapp.services.ExpenseService;
-import com.familyapp.services.IncomeService;
-import com.familyapp.services.UserService;
+import com.familyapp.services.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,12 +11,14 @@ public class DashboardController {
     private final IncomeService incomeService;
     private final ExpenseService expenseService;
     private final UserService userService;
+    private final EventService eventService;
 
-    public DashboardController(BudgetService budgetService, IncomeService incomeService, ExpenseService expenseService, UserService userService) {
+    public DashboardController(BudgetService budgetService, IncomeService incomeService, ExpenseService expenseService, UserService userService, EventService eventService) {
         this.budgetService = budgetService;
         this.incomeService = incomeService;
         this.expenseService = expenseService;
         this.userService = userService;
+        this.eventService = eventService;
     }
 
 
@@ -31,6 +30,7 @@ public class DashboardController {
         model.addAttribute("userExpenses", expenseService.getMonthlyExpensesByUser());
         model.addAttribute("userSavings", incomeService.getSavingsByUser());
         model.addAttribute("monthlyExpenses", expenseService.getAllByUser());
+        model.addAttribute("userEvents", eventService.getAllByUser());
         return "dashboard-user";
     }
 
@@ -43,6 +43,7 @@ public class DashboardController {
         model.addAttribute("familySavings", incomeService.getSavingsByFamily());
         model.addAttribute("monthlyFamilyExpenses", expenseService.getAllByFamily());
         model.addAttribute("familyMembers", userService.getAllFamilyMembers());
+        model.addAttribute("familyEvents", eventService.getAllByFamily());
         return "dashboard-family";
     }
 }

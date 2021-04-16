@@ -77,27 +77,22 @@ public class EventServiceImpl implements EventService {
     @Override
     public String getAllByUser() {
         List<Event> events = eventRepo.findAllByAddedFrom_Username(SecurityContextHolder.getContext().getAuthentication().getName());
+        return getEvents(events);
+    }
 
+    @Override
+    public String getAllByFamily() {
+        User user = userService.findByName(SecurityContextHolder.getContext().getAuthentication().getName());
+        List<Event> events = eventRepo.findAllByAddedFrom_Family_Id(user.getFamily().getId());
+        return getEvents(events);
+    }
+
+    public String getEvents(List<Event> events) {
         if (events.isEmpty()) {
-            //return new ArrayList<>();
-            return "";
+            return gson.toJson(new ArrayList<>());
         }
 
-//        Map<String, List<EventViewModel>> userEvents = new HashMap<>();
-//
-//        events.forEach(e -> {
-//            EventViewModel event = modelMapper.map(e, EventViewModel.class);
-//            event.setAddedFrom(SecurityContextHolder.getContext().getAuthentication().getName());
-//
-//            if (userEvents.isEmpty()) {
-//                List<EventViewModel> newEventList = new ArrayList<>();
-//                userEvents.put("event", newEventList);
-//            }
-//
-//            userEvents.get("event").add(event);
-//        });
-
-        List<EventViewModel> userEvents = events.stream()
+        List<EventViewModel> eventsList = events.stream()
                 .map(e -> {
                     EventViewModel event = modelMapper.map(e, EventViewModel.class);
                     event.setAddedFrom(SecurityContextHolder.getContext().getAuthentication().getName());
@@ -105,16 +100,6 @@ public class EventServiceImpl implements EventService {
                     return event;
                 }).collect(Collectors.toList());
 
-//                //.filter(e -> e.getCreatedOn().getMonth().equals(LocalDate.now().getMonth()))
-
-
-        String eventsJson = gson.toJson(userEvents);
-
-
-        System.out.println(eventsJson);
-
-        return eventsJson;
-
-
+        return gson.toJson(eventsList);
     }
 }
