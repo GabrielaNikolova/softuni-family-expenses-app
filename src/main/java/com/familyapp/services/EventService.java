@@ -1,6 +1,7 @@
 package com.familyapp.services;
 
 import com.familyapp.models.serviceModels.EventAddServModel;
+import com.familyapp.models.serviceModels.EventEditServModel;
 import com.familyapp.models.viewModels.EventViewModel;
 
 public interface EventService {
@@ -13,4 +14,6 @@ public interface EventService {
     String getAllByUser();
 
     String getAllByFamily();
+
+    void updateEvent(String id, EventEditServModel eventEditServModel);
 }

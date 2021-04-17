@@ -3,6 +3,7 @@ package com.familyapp.services.impl;
 import com.familyapp.models.entities.Event;
 import com.familyapp.models.entities.User;
 import com.familyapp.models.serviceModels.EventAddServModel;
+import com.familyapp.models.serviceModels.EventEditServModel;
 import com.familyapp.models.viewModels.EventViewModel;
 import com.familyapp.repositories.EventRepo;
 import com.familyapp.services.EventService;
@@ -87,6 +88,31 @@ public class EventServiceImpl implements EventService {
         return getEvents(events);
     }
 
+    @Override
+    public void updateEvent(String id, EventEditServModel eventEditServModel) {
+
+        Event event = eventRepo.findById(Long.valueOf(id)).orElseThrow(IllegalArgumentException::new);
+
+        if (!event.getEventName().equals(eventEditServModel.getEventName()) && eventEditServModel.getEventName() != null) {
+            event.setEventName(eventEditServModel.getEventName());
+        }
+        if (event.getEventDate() != (eventEditServModel.getEventDate()) && eventEditServModel.getEventDate() != null) {
+            event.setEventDate(eventEditServModel.getEventDate());
+        }
+        if (!event.getLocation().equals(eventEditServModel.getLocation()) && eventEditServModel.getLocation() != null) {
+            event.setLocation(eventEditServModel.getLocation());
+        }
+        if (!event.getBelongTo().equals(eventEditServModel.getBelongTo()) && eventEditServModel.getBelongTo() != null) {
+            event.setBelongTo(eventEditServModel.getBelongTo());
+        }
+        if (!event.getNote().equals(eventEditServModel.getNote()) && eventEditServModel.getNote() != null) {
+            event.setNote(eventEditServModel.getNote());
+        }
+
+        eventRepo.save(event);
+
+    }
+
     public String getEvents(List<Event> events) {
         if (events.isEmpty()) {
             return gson.toJson(new ArrayList<>());
@@ -96,7 +122,7 @@ public class EventServiceImpl implements EventService {
                 .map(e -> {
                     EventViewModel event = modelMapper.map(e, EventViewModel.class);
                     event.setAddedFrom(SecurityContextHolder.getContext().getAuthentication().getName());
-                    event.setEventDate(e.getEventDate().minusMonths(1).format(DateTimeFormatter.ofPattern("ddMyyyy")));
+                    event.setEventDate(e.getEventDate().minusMonths(1).format(DateTimeFormatter.ofPattern("dMyyyy")));
                     return event;
                 }).collect(Collectors.toList());
 

@@ -1,7 +1,10 @@
 package com.familyapp.web;
 
 import com.familyapp.models.bindingModels.EventAddBindModel;
+import com.familyapp.models.bindingModels.EventEditBindModel;
 import com.familyapp.models.serviceModels.EventAddServModel;
+import com.familyapp.models.serviceModels.EventEditServModel;
+import com.familyapp.models.viewModels.EventViewModel;
 import com.familyapp.services.EventService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
@@ -29,6 +32,7 @@ public class EventController {
     public EventAddBindModel createBindingModel() {
         return new EventAddBindModel();
     }
+
 
 
     @GetMapping("/add")
@@ -70,6 +74,7 @@ public class EventController {
     public String expenseDetails(@PathVariable String id, Model model) {
 
         model.addAttribute("eventDetails", eventService.getEventById(id));
+
         return "events-details";
     }
 
@@ -80,5 +85,35 @@ public class EventController {
         return "redirect:/events/all";
     }
 
+
+    @GetMapping("/update/{id}")
+    public String getEventUpdateInfo(Model model, @PathVariable String id) {
+        EventViewModel event = eventService.getEventById(id);
+        model.addAttribute("eventUpdate", event);
+
+        return "event-edit";
+    }
+
+    @PostMapping("/update/{id}")
+    public String eventUpdate(@PathVariable String id, @Valid EventEditBindModel eventEditBindModel,
+                              BindingResult bindingResult,
+                              RedirectAttributes redirectAttributes) {
+
+
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("eventEditBindModel", eventEditBindModel);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.eventEditBindModel", bindingResult);
+
+            return "redirect:/events/update/{id}";
+        }
+
+        EventEditServModel eventEditServModel = modelMapper
+                .map(eventEditBindModel, EventEditServModel.class);
+
+        eventService.updateEvent(id, eventEditServModel);
+
+        return "redirect:/events/all";
+
+    }
 
 }

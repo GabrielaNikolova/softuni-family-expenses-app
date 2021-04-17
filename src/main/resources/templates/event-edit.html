@@ -13,50 +13,118 @@
         <div class="content">
             <div class="row justify-content-center">
                 <div class="col-lg-6 col-md-6 col-sm-6 align-content-center">
-                    <div class="card card-stats" th:object="${eventDetails}">
-                        <div class="card-body ">
-                            <div class="row">
-                                <div class="col-5 col-md-4">
-                                    <img src="/images/icons/calendarBig.png" alt="" height="100"
-                                         class="d-inline-block">
-                                </div>
-                                <div class="col-7 col-md-8">
-                                    <div class="details">
-                                        <p class="card-category"
-                                           style="font-size: 24px; text-decoration: underline; padding-bottom: 10px; text-align: center">
-                                            Event</p>
-                                        <p class="card-text"><span th:text="|Event name: |"
-                                                                   style="text-decoration: underline"></span><span
-                                                th:text=" *{eventName}"></span></p>
-                                        <p class="card-text"><span th:text="|Event date: |"
-                                                                   style="text-decoration: underline"></span><span
-                                                th:text=" *{eventDate}"></span></p>
-                                        <p class="card-text"><span th:text="|Event location: |"
-                                                                   style="text-decoration: underline"></span><span
-                                                th:text=" *{location}"></span></p>
-                                        <p class="card-text"><span th:text="|Event owner: |"
-                                                                   style="text-decoration: underline"></span><span
-                                                th:text=" *{belongTo}"></span></p>
-                                        <p class="card-text"><span th:text="|Added by: |"
-                                                                   style="text-decoration: underline"></span><span
-                                                th:text=" *{addedFrom}"></span></p>
-                                        <p class="card-text"><span th:text="|Notes: |"
-                                                                   style="text-decoration: underline"></span><span
-                                                th:text=" *{note}"></span></p>
+                    <form class="register-form" th:action="@{/events/update/{id}(id=*{id})}"
+                          th:object="${eventUpdate}"
+                          method="POST">
+                        <div class="card card-stats">
+                            <div class="card-body ">
+                                <div class="row">
+                                    <div class="col-5 col-md-4">
+                                        <img src="/images/icons/calendarBig.png" alt="" height="100"
+                                             class="d-inline-block">
+                                    </div>
+                                    <div class="col-7 col-md-8">
+                                        <div class="details">
+                                            <p class="card-category"
+                                               style="font-size: 24px; text-decoration: underline; padding-bottom: 10px; text-align: center">
+                                                Event</p>
+
+                                            <div class="col-7 col-md-8">
+                                                <div class="form-group row">
+                                                    <label for="inputEventName">Event Name</label>
+                                                    <input name="eventName"
+                                                           th:field="*{eventName}"
+                                                           th:errorclass="is-invalid"
+                                                           required
+                                                           minlength="3" maxlength="20"
+                                                           type="text" class="form-control" id="inputEventName"
+                                                           placeholder="Enter Event Name">
+                                                    <small id="eventNameError"
+                                                           class="invalid-feedback text-danger form-text bg-transparent">Length
+                                                        must between 3
+                                                        and 20 characters</small>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="eventDate" th:text="|Event Date - *{eventDate}|">Event
+                                                        Date</label>
+                                                    <input name="eventDate"
+                                                           th:field="*{eventDate}"
+                                                           th:errorclass="is-invalid"
+                                                           required
+                                                           type="datetime-local" class="form-control" id="eventDate"
+                                                           placeholder="Enter a Date and Time">
+                                                    <small id="eventDateError"
+                                                           class="invalid-feedback text-danger form-text bg-transparent">Date
+                                                        and
+                                                        Time
+                                                        cannot be in the past</small>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="eventLocation">Event Location</label>
+                                                    <input name="location"
+                                                           th:field="*{location}"
+                                                           th:errorclass="is-invalid"
+                                                           required
+                                                           minlength="3" maxlength="30"
+                                                           type="text" class="form-control" id="eventLocation"
+                                                           placeholder="Enter Event Location">
+                                                    <small id="eventLocationError"
+                                                           class="invalid-feedback text-danger form-text bg-transparent">Length
+                                                        must between 3
+                                                        and 30 characters</small>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="belongTo">Event Owner</label>
+                                                    <input name="belongTo"
+                                                           th:field="*{belongTo}"
+                                                           th:errorclass="is-invalid"
+                                                           required
+                                                           minlength="3" maxlength="30"
+                                                           type="text" class="form-control" id="belongTo"
+                                                           placeholder="Enter an Event Owner">
+                                                    <small id="belongToError"
+                                                           class="invalid-feedback text-danger form-text bg-transparent">Length
+                                                        must between 3
+                                                        and 30 characters</small>
+                                                </div>
+                                                <div class="form-group row align-content-center">
+                                                    <label for="note">Event Notes</label>
+                                                    <textarea name="note"
+                                                              th:field="*{note}"
+                                                              th:errorclass="is-invalid"
+                                                              maxlength="200"
+                                                              rows="4" cols="50" id="note" class="form-control"
+                                                              placeholder="Enter Event Notes"></textarea>
+                                                    <small id="noteError"
+                                                           class="invalid-feedback text-danger form-text bg-transparent">Length
+                                                        cannot exceed 200 characters</small>
+                                                </div>
+                                                <div class="form-group row align-content-center">
+                                                    <div class="btn-group rounded align-items-center"
+                                                         style="background-color: #333a6e">
+                                                        <!--                                                    <form th:action="@{/events/update/{id}(id=*{id})}" method="POST">-->
+                                                        <!--                                                        <button type="submit" class="btn text-wrap" style="color: #f8f0f3">Update-->
+                                                        <!--                                                            Event-->
+                                                        <!--                                                        </button>-->
+                                                        <!--                                                    </form>-->
+                                                        <button type="submit" class="btn text-wrap"
+                                                                style="color: #f8f0f3">
+                                                            Update
+                                                            Event
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
+
                         </div>
-                        <div class="card-footer ">
-                            <div class="btn-group rounded align-items-center"
-                                 style="background-color: #333a6e">
-                                <a type="button" class="btn btn-sm"
-                                   style="color: #f8f0f3; text-align: center !important;"
-                                   th:href="@{/events/update/{id}(id=*{id})}">Update Event
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
             <footer th:replace="fragments/fragments :: footer"></footer>

@@ -72,7 +72,7 @@ public class FamilyController {
         UserRegistrationBindModel userRegistrationBindModel = new UserRegistrationBindModel();
         userRegistrationBindModel.setFamilyEmail(familyLoginBindModel.getFamilyEmail());
         redirectAttributes.addFlashAttribute("userRegistrationBindModel", userRegistrationBindModel);
-        redirectAttributes.addFlashAttribute("familyConfirmed", true);//TODO
+        redirectAttributes.addFlashAttribute("familyConfirmed", true);
 
         return "redirect:/users/register";
     }
