@@ -68,14 +68,24 @@ public class UserServiceImpl implements UserService {
         List<Role> userRoles = new ArrayList<>();
         newUser.setRoles(userRoles);
 
-        if (family.getFamilyMembers().isEmpty()) {
+        if (family.getFamilyName().equals("admin") && newUser.getUsername().equals("admin")) {
             Role adminRole = roleService.
                     findByRole(RoleEnums.ADMIN);
             newUser.getRoles().add(adminRole);
 
             List<User> familyMembers = new ArrayList<>();
             family.setFamilyMembers(familyMembers);
+
         }
+
+//        if (family.getFamilyMembers().isEmpty()) {
+//            Role adminRole = roleService.
+//                    findByRole(RoleEnums.ADMIN);
+//            newUser.getRoles().add(adminRole);
+//
+//            List<User> familyMembers = new ArrayList<>();
+//            family.setFamilyMembers(familyMembers);
+//        }
         Role userRole = roleService.
                 findByRole(RoleEnums.USER);
         newUser.getRoles().add(userRole);

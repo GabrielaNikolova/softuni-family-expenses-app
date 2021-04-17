@@ -93,19 +93,19 @@ public class EventServiceImpl implements EventService {
 
         Event event = eventRepo.findById(Long.valueOf(id)).orElseThrow(IllegalArgumentException::new);
 
-        if (!event.getEventName().equals(eventEditServModel.getEventName()) && eventEditServModel.getEventName() != null) {
+        if (!event.getEventName().equals(eventEditServModel.getEventName())) {
             event.setEventName(eventEditServModel.getEventName());
         }
-        if (event.getEventDate() != (eventEditServModel.getEventDate()) && eventEditServModel.getEventDate() != null) {
+        if (event.getEventDate() != (eventEditServModel.getEventDate())) {
             event.setEventDate(eventEditServModel.getEventDate());
         }
-        if (!event.getLocation().equals(eventEditServModel.getLocation()) && eventEditServModel.getLocation() != null) {
+        if (!event.getLocation().equals(eventEditServModel.getLocation())) {
             event.setLocation(eventEditServModel.getLocation());
         }
-        if (!event.getBelongTo().equals(eventEditServModel.getBelongTo()) && eventEditServModel.getBelongTo() != null) {
+        if (!event.getBelongTo().equals(eventEditServModel.getBelongTo())) {
             event.setBelongTo(eventEditServModel.getBelongTo());
         }
-        if (!event.getNote().equals(eventEditServModel.getNote()) && eventEditServModel.getNote() != null) {
+        if (!event.getNote().equals(eventEditServModel.getNote())) {
             event.setNote(eventEditServModel.getNote());
         }
 
