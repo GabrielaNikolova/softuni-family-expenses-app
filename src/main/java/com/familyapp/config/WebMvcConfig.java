@@ -14,11 +14,14 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Autowired
     LogInterceptor interceptor;
+//    @Autowired
+//    private IPAddressInterceptor ipAddressInterceptor;
 
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(interceptor);
+        //registry.addInterceptor(ipAddressInterceptor);
 
         //        .excludePathPatterns("/static/css/**", "/js/*.js","/images/*.png", "/images/icons/*.png");
 

@@ -28,6 +28,7 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.
+                //addFilterAfter(new StatsFilter(), BasicAuthenticationFilter.class).
                 authorizeRequests().
                 // allow access to static resources to anyone
                         requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll().
