@@ -31,9 +31,10 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
                 authorizeRequests().
                 // allow access to static resources to anyone
                         requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll().
-                // allow access to index, user login and registration to anyone
+                // allow access to index, family login and registration, user login and registration to anyone
                         antMatchers("/", "/families/register", "/families/confirm", "/users/login", "/users/register", "/users/login-error").permitAll().
-                //antMatchers("/articles/add").hasRole("ADMIN").
+                //protect admin page
+                        antMatchers("/admin/**").hasRole("ADMIN").
                 // protect all other pages
                         antMatchers("/**").authenticated().
                 anyRequest().authenticated().

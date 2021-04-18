@@ -1,6 +1,7 @@
 package com.familyapp.services;
 
 import com.familyapp.models.entities.User;
+import com.familyapp.models.enumModels.RoleEnums;
 import com.familyapp.models.serviceModels.UserRegistrationServModel;
 import com.familyapp.models.viewModels.UserViewModel;
 
@@ -21,4 +22,10 @@ public interface UserService {
     List<UserViewModel> getAllFamilyMembers();
 
     void updateUserEvents(Long eventId);
+
+    List<String> getAllUsernames();
+
+    void changeUserRole(String username, RoleEnums roleEnum);
+
+    List<UserViewModel> getAllUsers();
 }

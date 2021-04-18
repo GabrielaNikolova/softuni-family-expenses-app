@@ -13,4 +13,6 @@ public interface UserRepo extends JpaRepository<User, Long> {
 
     List<User> findAllByFamily_Id(Long id);
 
+    List<User> findAll();
+
 }

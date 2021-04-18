@@ -13,6 +13,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -129,20 +130,50 @@ public class UserServiceImpl implements UserService {
 
     }
 
+
+    @Override
+    public List<String> getAllUsernames() {
+        List<User> users = userRepo.findAll();
+        List<String> usernames = new ArrayList<>();
+        users.forEach(u -> usernames.add(u.getUsername()));
+        return usernames;
+    }
+
+    @Override
+    public void changeUserRole(String username, RoleEnums roleEnum) {
+        User user = userRepo.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User with name " + username + " was not found!"));
+        ;
+        Role role = roleService.findByRole(roleEnum);
+
+        if (!user.getRoles().contains(role)) {
+            user.getRoles().add(role);
+            userRepo.save(user);
+        }
+    }
+
+    @Override
+    public List<UserViewModel> getAllUsers() {
+        List<User> users = userRepo.findAll();
+        return getUserViewModels(users);
+    }
+
     @Override
     public List<UserViewModel> getAllFamilyMembers() {
         User user = findByName(SecurityContextHolder.getContext().getAuthentication().getName());
         List<User> users = userRepo.findAllByFamily_Id(user.getFamily().getId());
 
-        List<UserViewModel> userViews = users.stream()
+        return getUserViewModels(users);
+    }
+
+    private List<UserViewModel> getUserViewModels(List<User> users) {
+        return users.stream()
                 .map(u -> {
                     UserViewModel userView = modelMapper.map(u, UserViewModel.class);
                     List<String> userRoles = u.getRoles().stream().map(r -> String.valueOf(r.getName())).collect(Collectors.toList());
                     userView.setRoles(userRoles);
                     return userView;
                 }).collect(Collectors.toList());
-
-        return userViews;
     }
 
 }
