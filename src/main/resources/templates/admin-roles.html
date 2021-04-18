@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/fragments :: head"></head>
+<body class="dashboard">
+<div class="wrapper">
+    <div th:replace="fragments/fragments :: sidebar"></div>
+
+    <div class="main-panel">
+        <!-- Navbar -->
+        <nav th:replace="fragments/fragments :: nav2"></nav>
+        <!-- End Navbar -->
+        <div class="content">
+            <div class="row">
+                <form class="register-form" th:action="@{/admin/user-roles}"
+                      th:object="${names}"
+                      method="POST">
+                    <div class="card card-stats">
+                        <div class="card-body ">
+                            <div class="row">
+                                <div class="col-5 col-md-4">
+                                    <img src="/images/icons/adminBig.png" alt="" height="100"
+                                         class="d-inline-block">
+                                </div>
+                                <div class="col-7 col-md-8">
+                                    <div class="details">
+                                        <p class="card-category"
+                                           style="font-size: 24px; text-decoration: underline; padding-bottom: 10px; text-align: center">
+                                            Add new role to user</p>
+                                        <div class="col-7 col-md-8">
+                                            <div class="form-group row">
+                                                <label for="username"
+                                                       class="col-7 col-md-8">Users</label>
+                                                <select class="custom-select col-xl-9 col-lg-8 col-md-8 col-sm-7"
+                                                        id="username"
+                                                        name="username">
+                                                    <option value="" selected>Select user</option>
+                                                    <option th:each="n:${names}" th:text="${n}" th:value="${n}">Pesho
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="ccol-7 col-md-8">Roles</label>
+                                                <div>
+                                                    <input checked type="radio" id="user" name="role" value="user">
+                                                    <label for="user">User</label><br/>
+                                                    <input type="radio" id="admin" name="role" value="admin">
+                                                    <label for="admin">Admin</label><br/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row align-content-center">
+                                                <div class="btn-group rounded align-items-center"
+                                                     style="background-color: #333a6e">
+                                                    <button type="submit" class="btn text-wrap"
+                                                            style="color: #f8f0f3">
+                                                        Add New Role
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <footer th:replace="fragments/fragments :: footer"></footer>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>
+</body>
+</html>
+
+
+
+
+
