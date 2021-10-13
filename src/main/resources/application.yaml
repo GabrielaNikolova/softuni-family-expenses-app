@@ -2,7 +2,7 @@ spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
     # Put here your user name
-    username: gaby
+    username: "${MYSQLUSER:}"
     # Put here your password
     password: "${MYSQLPASS:}"
     url: jdbc:mysql://${MYSQLHOST:localhost}:3306/family_app_db?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true
@@ -27,9 +27,8 @@ spring:
         format_sql: true
 server:
   port: 8080
-  server:
-    error:
-      path=/error:
-#  servlet:
-#    session:
-#      timeout: 1m
+  error:
+    path: /error
+  servlet:
+    session:
+      timeout: 5m
