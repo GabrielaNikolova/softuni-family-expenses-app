@@ -17,9 +17,10 @@
 
 <nav th:fragment="navigation" class="navbar navbar-expand-lg navbar-light bg-transparent">
     <div class="container-fluid">
-        <img src="/images/icons/wallet2.png" alt="" width="30" height="24"
-             class="d-inline-block align-center">
-        <a class="navbar-brand ml-2 h1" th:href="@{/}">FaM.Ma</a>
+        <!--        <img src="/images/icons/wallet2.png" alt="" width="30" height="24"-->
+        <a class="navbar-brand ml-2 h1" th:href="@{/}"><img alt="" class="d-inline-block align-center" height="80"
+                                                            src="/images/logo.png"
+                                                            width="100"></a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -78,9 +79,9 @@
 </nav>
 <div th:fragment="sidebar" class="sidebar" data-color="white" data-active-color="danger">
     <div class="logo">
-        <img src="/images/icons/wallet2.png" alt="" width="30" height="24"
-             class="d-inline-block align-center">
-        <a class="navbar-brand ml-2 h1" style="color: #f8f0f3 !important;" th:href="@{/admin/stats}">FaM.Ma</a>
+        <a class="navbar-brand ml-2 h1" th:href="@{/admin/stats}"><img alt="" class="d-inline-block align-center"
+                                                                       height="80" src="/images/logo.png"
+                                                                       width="100"></a>
     </div>
     <div sec:authorize="hasRole('ROLE_ADMIN')" class="sidebar-wrapper">
         <ul class="nav">

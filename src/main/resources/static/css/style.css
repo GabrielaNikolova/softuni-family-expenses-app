@@ -1,13 +1,14 @@
 body.text {
   font-family: "Trebuchet MS", sans-serif;
-  color: #333a6e;
+  color: #00fa96;
 }
 
 body.index {
   max-width: 100%;
   height: auto;
   background-size: auto;
-  background: linear-gradient(45deg, rgba(255, 173, 79, 0.6), rgba(255, 230, 202, 0.6)), url("../images/background.png") center no-repeat;
+  /*background: linear-gradient(45deg, rgba(255, 173, 79, 0.6), rgba(255, 230, 202, 0.6)), url("../images/background.png") center no-repeat;*/
+  background: url("../images/1.jpg") center no-repeat;
   font-family: "Trebuchet MS", sans-serif;
 }
 
@@ -93,7 +94,7 @@ footer {
 }
 
 .dashboard {
-  background-color: #f8f0f3;
+  background-color: #efc7fb;
   color: #333a6e;
   font-size: 14px;
   font-family: "Trebuchet MS", sans-serif;
@@ -116,7 +117,8 @@ footer {
   left: 0;
   z-index: 1030;
   border-right: 1px solid #ddd;
-  background-color: #ac7b8b;
+  background-color: #010751;
+  color: #00fa96;
 }
 
 .sidebar .logo, .off-canvas-sidebar .logo {
@@ -147,7 +149,7 @@ footer {
 
 .sidebar .nav li > a, .off-canvas-sidebar .nav li > a {
   margin: 10px 15px 0;
-  color: #f8f0f3;
+  color: #00fa96;
   display: block;
   text-decoration: none;
   position: relative;
