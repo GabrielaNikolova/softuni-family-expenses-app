@@ -12,7 +12,8 @@
         <div class="content">
             <div class="container-sm h-100">
                 <div class="row h-100 justify-content-center align-items-center" style="padding: 30px">
-                    <form class="login-form" th:action="@{/income/add}" th:object="${incomeAddBindModel}" method="POST">
+                    <form class="register-form" method="POST" th:action="@{/income/add}"
+                          th:object="${incomeAddBindModel}">
                         <div class="login-card">
                             <h5 th:if="${invalidSavingsValue}" class="text-center text-danger form-text bg-transparent">
                                 Savings cannot be bigger than Income</h5>

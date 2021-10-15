@@ -14,7 +14,7 @@
                 <div class="row mx-md-n5 align-items-center">
                     <div class="col px-md-5">
                         <div class="form-group row">
-                            <label for="inputEmail">Family Email</label>
+                            <label for="inputEmail" style="color: #00e1ff !important">Family Email</label>
                             <input name="familyEmail"
                                    th:field="*{familyEmail}"
                                    required readonly="readonly"
@@ -37,7 +37,7 @@
                 <div class="row mx-md-n5">
                     <div class="col px-md-5">
                         <div class="form-group row">
-                            <label for="inputUsername">Username</label>
+                            <label for="inputUsername" style="color: #00e1ff !important">Username</label>
                             <input name="username"
                                    th:field="*{username}"
                                    th:errorclass="is-invalid"
@@ -48,7 +48,7 @@
                                 and 20 characters</small>
                         </div>
                         <div class="form-group row">
-                            <label for="inputFullName">Full Name of User</label>
+                            <label for="inputFullName" style="color: #00e1ff !important">Full Name of User</label>
                             <input name="fullName"
                                    th:field="*{fullName}"
                                    th:errorclass="is-invalid"
@@ -62,7 +62,7 @@
                     </div>
                     <div class="col px-md-5">
                         <div class="form-group row">
-                            <label for="inputPassword">Password</label>
+                            <label for="inputPassword" style="color: #00e1ff !important">Password</label>
                             <input name="password"
                                    th:errorclass="is-invalid"
                                    required minlength="5" maxlength="20"
@@ -71,7 +71,7 @@
                             <small id="passwordError" class="invalid-feedback text-danger form-text bg-transparent">Fields should match</small>
                         </div>
                         <div class="form-group row">
-                            <label for="inputConfirmPassword">Confirm Password</label>
+                            <label for="inputConfirmPassword" style="color: #00e1ff !important">Confirm Password</label>
                             <input name="confirmPassword"
                                    th:errorclass="is-invalid" required
                                    minlength="5" maxlength="20"

@@ -20,7 +20,7 @@
                 <!--                    <small id="familyNameError" class="text-danger form-text bg-transparent">Length must between 3 and 20 characters</small>-->
                 <!--                </div>-->
                 <div class="form-group row">
-                    <label for="inputUsername">Username</label>
+                    <label for="inputUsername" style="color: #00e1ff !important">Username</label>
                     <input name="username"
                            th:value="${username}"
                            required minlength="3" maxlength="20"
@@ -29,7 +29,7 @@
                         between 3 and 20 characters</small>
                 </div>
                 <div class="form-group row">
-                    <label for="inputPassword">Password</label>
+                    <label for="inputPassword" style="color: #00e1ff !important">Password</label>
                     <input name="password"
                            required minlength="5" maxlength="20"
                            type="password" class="form-control" id="inputPassword" placeholder="Enter Password">
@@ -42,8 +42,9 @@
                     </div>
                 </div>
                 <div class="col-12 text-center align-text-bottom">
-                    <p class="text-muted">Haven't joined your Family, yet? <a href="/families/confirm"
-                                                                              class="text-muted ml-1"><b>Join Family</b></a>
+                    <p class="text-muted">Haven't joined your Family, yet?<br><a class="text-muted ml-1"
+                                                                                 href="/families/confirm"><b>Join
+                        Family</b></a>
                     </p>
                 </div>
             </div>

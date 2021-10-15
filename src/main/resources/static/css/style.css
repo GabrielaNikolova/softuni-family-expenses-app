@@ -1,6 +1,6 @@
-body.text {
+body {
   font-family: "Trebuchet MS", sans-serif;
-  color: #00fa96;
+  color: #333a6e;
 }
 
 body.index {
@@ -12,10 +12,15 @@ body.index {
   font-family: "Trebuchet MS", sans-serif;
 }
 
+body.index .copyright, .intro-text, a.nav-link {
+  font-family: "Trebuchet MS", sans-serif;
+  color: #01e9ff !important;
+}
+
 .navbar-brand, a.nav-link, .nav-item > ul > li, .copyright, .intro-text, .dropdown-item {
   font-family: "Trebuchet MS", sans-serif !important;
   font-weight: 400 !important;
-  color: #333a6e !important;
+  color: #333a6e;
 }
 
 .dropdown-menu {
@@ -61,7 +66,7 @@ footer {
 }
 
 .login-form {
-  background-color: rgba(248, 240, 243, 0.3);
+  background-color: rgba(248, 240, 243, 0.4);
   max-height: 500px;
   max-width: 400px;
   padding: 15px 25px;
@@ -72,8 +77,12 @@ footer {
   padding: 15px;
 }
 
-.form-group > label {
+.text-muted {
   color: #333a6e !important;
+}
+
+.form-group > label {
+  color: #333a6e;
   font-size: 16px;
   font-weight: 500;
   font-family: "Trebuchet MS", sans-serif;
@@ -86,8 +95,8 @@ footer {
 }
 
 .register-form {
-  background-color: rgba(248, 240, 243, 0.3);
-  max-height: 500px;
+  background-color: rgba(248, 240, 243, 0.4);
+  /*max-height: 500px;*/
   max-width: 700px;
   padding: 15px 25px;
   border-radius: 25px;
@@ -118,7 +127,7 @@ footer {
   z-index: 1030;
   border-right: 1px solid #ddd;
   background-color: #010751;
-  color: #00fa96;
+  color: #01e9ff;
 }
 
 .sidebar .logo, .off-canvas-sidebar .logo {
@@ -149,7 +158,7 @@ footer {
 
 .sidebar .nav li > a, .off-canvas-sidebar .nav li > a {
   margin: 10px 15px 0;
-  color: #00fa96;
+  color: #01e9ff;
   display: block;
   text-decoration: none;
   position: relative;
@@ -169,21 +178,28 @@ footer {
   float: left;
   padding-right: 10px;
   padding-left: 10px;
-  content: url("/images/icons/stats.png");
+  content: url("/images/icons/family.png");
+}
+
+.usr::before {
+  float: left;
+  padding-right: 10px;
+  padding-left: 10px;
+  content: url("/images/icons/user.png");
 }
 
 .bdg::before {
   float: left;
   padding-right: 10px;
   padding-left: 10px;
-  content: url("/images/icons/income.png");
+  content: url("/images/icons/income1.png");
 }
 
 .exps::before {
   float: left;
   padding-right: 10px;
   padding-left: 10px;
-  content: url("/images/icons/expense.png");
+  content: url("/images/icons/expense1.png");
 }
 
 .adm::before {
@@ -241,12 +257,12 @@ footer {
 }
 
 .navbar.navbar-transparent a:not(.dropdown-item):not(.btn) {
-  color: #66615B;
+  color: #333a6e;
 }
 
-.navbar a:not(.btn):not(.dropdown-item) {
-  color: #FFFFFF;
-}
+/*.navbar a:not(.btn):not(.dropdown-item) {*/
+/*  color: #FFFFFF;*/
+/*}*/
 
 .navbar .navbar-brand {
   text-transform: capitalize;
@@ -328,6 +344,7 @@ footer {
 
 .table tbody tr td {
   text-align: left;
+  color: #333a6e !important;
 }
 
 /*--------------------------------------------------------------
