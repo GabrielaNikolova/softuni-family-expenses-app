@@ -1,0 +1,9 @@
+{
+  "properties": [
+    {
+      "name": "server.server.error.path=/error",
+      "type": "java.lang.String",
+      "description": "Description for server.server.error.path=/error."
+    }
+  ]
+}
