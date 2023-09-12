@@ -2,7 +2,6 @@ package com.familyapp.web;
 
 import com.familyapp.models.bindingModels.UserRegistrationBindModel;
 import com.familyapp.models.serviceModels.UserRegistrationServModel;
-import com.familyapp.services.FamilyService;
 import com.familyapp.services.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -22,13 +21,13 @@ public class UserController {
 
     private final ModelMapper modelMapper;
     private final UserService userService;
-    private final FamilyService familyService;
+    //private final FamilyService familyService;
 
 
-    public UserController(ModelMapper modelMapper, UserService userService, FamilyService familyService) {
+    public UserController(ModelMapper modelMapper, UserService userService) {
         this.modelMapper = modelMapper;
         this.userService = userService;
-        this.familyService = familyService;
+        //this.familyService = familyService;
     }
 
 

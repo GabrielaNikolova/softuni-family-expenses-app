@@ -1,32 +1,37 @@
 package com.familyapp.config;
 
 import com.familyapp.services.impl.UserDetailsAppService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
-public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapter {
+public class ApplicationSecurityConfiguration {
 
 
     private final UserDetailsAppService userDetailsAppService;
     private final PasswordEncoder passwordEncoder;
+    private final AuthenticationConfiguration configuration;
 
 
-    public ApplicationSecurityConfiguration(UserDetailsAppService userDetailsAppService, PasswordEncoder passwordEncoder) {
+    public ApplicationSecurityConfiguration(UserDetailsAppService userDetailsAppService, PasswordEncoder passwordEncoder, AuthenticationConfiguration configuration) {
         this.userDetailsAppService = userDetailsAppService;
         this.passwordEncoder = passwordEncoder;
+        this.configuration = configuration;
     }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.
                 //addFilterAfter(new StatsFilter(), BasicAuthenticationFilter.class).
                 authorizeRequests().
@@ -67,13 +72,18 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
                         invalidateHttpSession(true).
                 // delete the session cookie
                         deleteCookies("JSESSIONID");//bye! :-)
+        return http.build();
     }
 
-    @Override
+    @Autowired
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
                 .userDetailsService(userDetailsAppService)
                 .passwordEncoder(passwordEncoder);
+    }
+    @Bean
+    AuthenticationManager authenticationManager() throws Exception {
+        return configuration.getAuthenticationManager();
     }
 
     @Bean

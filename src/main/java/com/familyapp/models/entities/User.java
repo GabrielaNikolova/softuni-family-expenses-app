@@ -26,7 +26,7 @@ public class User extends BaseEntity {
         return username;
     }
 
-    @Column(name = "password", nullable = false) //TODO pass might be null for small kids
+    @Column(name = "password", nullable = false)
     public String getPassword() {
         return password;
     }
